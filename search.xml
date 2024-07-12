@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/03/30/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/writing.html" >Writing <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/server.html" >Server <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/generating.html" >Generating <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></div>
-
-<p>More info: <a class="link"   href="https://hexo.io/docs/one-command-deployment.html" >Deployment <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+    <title>Archlinux Install</title>
+    <url>/2024/07/12/Install/</url>
+    <content><![CDATA[<h4 id="原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB-可以在Windows下使用diskgenius查看"><a href="#原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB-可以在Windows下使用diskgenius查看" class="headerlink" title="原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB(可以在Windows下使用diskgenius查看)"></a>原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB(可以在Windows下使用diskgenius查看)</h4><h1 id="说在前面的话"><a href="#说在前面的话" class="headerlink" title="说在前面的话"></a>说在前面的话</h1><p>在安装之前，建议先阅读一下<a class="link"   href="https://arch.icekylin.online/guide/prepare/head-on-blow" >archlinux真的适合我吗 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h1 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h1><p>这里参考<a class="link"   href="https://arch.icekylin.online/guide/rookie/pre-install.html" >新手上路 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>和<a class="link"   href="https://wiki.archlinux.org/title/Installation_guide" >Archlinux wiki <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>这里要补充一点的是在进入boot之后检查一下自己的<code>SATA Mode</code>，如果是<code>RAID</code>，则会导致你在安装archlinux的过程中<code>lsblk</code>和<code>cfdisk</code>看不到自己的硬盘，需要修改成<code>AHCI</code>。相同的，在你安装好之后使用grub引导系统时，你在那之前还要进boot将其改回<code>RAID</code>才能正常启动Windows,如果要进入Archlinux，要改回<code>AHCI</code>。</p>
+<p>当然，如果你不想这么麻烦且可以接受Windows系统使用<strong>安全模式</strong>，具体区别见<a class="link"   href="https://support.microsoft.com/zh-cn/windows/%E9%AB%98%E7%BA%A7%E5%90%AF%E5%8A%A8%E9%80%89%E9%A1%B9-%E5%8C%85%E6%8B%AC%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F-b90e7808-80b5-a291-d4b8-1a1af602b617" >高级启动选项 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，你可以按照以下步骤：</p>
+<ol>
+<li>打开Windows</li>
+<li>Windows logo key(Super) + R </li>
+<li>输入msconfig</li>
+<li>选择<code>引导</code>选项</li>
+<li>选择<code>安全启动</code>并选择<code>最小</code></li>
+<li>重启进入boot然后将<code>SATA Mode</code>更改为<code>AHCI</code><br>这样你每次启动Windows都是安全模式</li>
+</ol>
+<p>如果你想详细了解<code>RAID</code>和<code>AHCI</code>，你可以参阅以下资料：<br><a class="link"   href="https://wiki.archlinuxcn.org/wiki/RAID" >RAID <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   href="https://wiki.archlinuxcn.org/wiki/AHCI" >AHCI <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   href="https://www.cnblogs.com/FireLife-Cheng/p/16408674.html" >https://www.cnblogs.com/FireLife-Cheng/p/16408674.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>如果想装nixos，可以参考<a class="link"   href="https://jackyliu16.github.io/blog/2023/dual-system-in-an515-54/" >https://jackyliu16.github.io/blog/2023/dual-system-in-an515-54/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 ]]></content>
   </entry>
 </search>
