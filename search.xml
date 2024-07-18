@@ -25,7 +25,7 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Interaction</title>
+    <title>Program Interaction</title>
     <url>/2023/10/26/Interaction/</url>
     <content><![CDATA[<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">/bin/bash</span><br></pre></td></tr></table></figure></div>
 
@@ -487,9 +487,12 @@
 
 <p>这里就是用C语言实现了一个<code>socket</code>连接，然后获取输出，再手动计算结果(因为C语言的计算写起来很复杂)输入给程序，最后运行完成获得<code>flag</code></p>
 ]]></content>
+      <tags>
+        <tag>pwn</tag>
+      </tags>
   </entry>
   <entry>
-    <title>ProgramMisuse</title>
+    <title>Program Misuse</title>
     <url>/2023/09/24/ProgramMisuse/</url>
     <content><![CDATA[<p>这里记录的是ASU 466课程的解题记录,<a class="link"   href="https://pwn.college/" >pwn <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,这一小节的题目只要学会看<code>man page</code>就能写出来。</p>
 <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
@@ -634,6 +637,9 @@
 <p>c程序中可以利用&lt;dlfcn.h&gt;头文件中的一系列函数dlopen，dlclose来加载运行共享库。</p>
 <p>gcc可以通过<code>-shared</code>参数来创建共享库，共享库不能单独运行，它相当于一个必须被别人调用才能运行的程序，它与普通二进制程序的区别可以通过file命令来查看，共享库没有<code>interpreter</code>这样的字段，也就是没有链接解释器。%</p>
 ]]></content>
+      <tags>
+        <tag>pwn</tag>
+      </tags>
   </entry>
   <entry>
     <title>git error</title>
