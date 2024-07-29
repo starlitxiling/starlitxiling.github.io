@@ -30,7 +30,7 @@
 <meta property="og:description" content="原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB(可以在Windows下使用diskgenius查看)说在前面的话在安装之前，建先阅读一下archlinux真的适合我吗  安装流程这里参考新手上路 和Archlinux wiki  这里要补充一点的是在进入boot之后检查一下自己的SATA Mode，如果是RAID，则会导致你在安装archlinux的">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-12T06:32:50.000Z">
-<meta property="article:modified_time" content="2024-07-28T19:31:11.849Z">
+<meta property="article:modified_time" content="2024-07-29T00:40:21.096Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -603,8 +603,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-29 03:31:11</span>
-            <span class="mobile">2024-07-29 03:31:11</span>
+            <span class="desktop">2024-07-29 08:40:21</span>
+            <span class="mobile">2024-07-29 08:40:21</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -659,7 +659,7 @@
 <p>如果你想详细了解<code>RAID</code>和<code>AHCI</code>，你可以参阅以下资料：<br><a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/RAID" >RAID <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/AHCI" >AHCI <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/FireLife-Cheng/p/16408674.html" >https://www.cnblogs.com/FireLife-Cheng/p/16408674.html <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 <h1 id="安全启动"><a href="#安全启动" class="headerlink" title="安全启动"></a>安全启动</h1><p>如果你想为ArchLinux设置安全启动，你可以参考官方文档<a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinuxcn.org/wiki/UEFI/%E5%AE%89%E5%85%A8%E5%90%AF%E5%8A%A8" >安全启动 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>. 强烈建议先把官方文档读一遍！！!这里要注意的点是选择哪个方式，如果你的bios有<code>setup mode</code>,你可以参考<a class="link"   target="_blank" rel="noopener" href="https://www.reddit.com/r/archlinux/comments/10pq74e/my_easy_method_for_setting_up_secure_boot_with/" >easy_method <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,如果没有，那你需要将密钥写进bios中，可以参考<a class="link"   target="_blank" rel="noopener" href="https://cascade.moe/posts/secure-boot/" >密钥安全启动 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>.</p>
 <h1 id="显卡驱动"><a href="#显卡驱动" class="headerlink" title="显卡驱动"></a>显卡驱动</h1><p>具体可以参考<a class="link"   target="_blank" rel="noopener" href="https://arch.icekylin.online/guide/rookie/graphic-driver.html" >显卡驱动 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。但是我在照做之后，<code>nvidia-smi</code>依然会失败(已经删除了kmsn并重新生成了镜像)，我每次都需要<code>sudo modprobe nvidia</code>，先记录一下，以后解决了再更新一下。</p>
-<p>如果想装nixos，可以参考<a class="link"   target="_blank" rel="noopener" href="https://jackyliu16.github.io/blog/2023/dual-system-in-an515-54/" >https://jackyliu16.github.io/blog/2023/dual-system-in-an515-54/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>           </p>
+<p>如果想装nixos，可以参考<a class="link"   target="_blank" rel="noopener" href="https://jackyliu16.github.io/blog/2023/dual-system-in-an515-54/" >https://jackyliu16.github.io/blog/2023/dual-system-in-an515-54/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>                  </p>
 
         </div>
 
@@ -674,7 +674,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-29 03:31:11
+                    :</strong> 2024-07-29 08:40:21
             </li>
         
         <li>
@@ -827,7 +827,7 @@
                     </span>
                     
                         <span>
-                            16.4k words in total
+                            16.5k words in total
                         </span>
                     
                 </p>
