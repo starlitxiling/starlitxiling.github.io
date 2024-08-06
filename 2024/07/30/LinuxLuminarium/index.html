@@ -30,7 +30,7 @@
 <meta property="og:description" content="应该是今年为初学者新加的项目，不是很难，但是还是有很多不知道的，浅  浅  写了一遍收获还不错。题目旁边还多了个hacker，我记得以前只有solve来着，不知道什么意思，可能是更hacker的解决办法，心情爆炸来pwn看看还是不错的。 Hello HackersIntro to Commands学会执行命令就行，直接           1.&#x2F;hello  Intro to Arguments在">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-30T12:41:53.000Z">
-<meta property="article:modified_time" content="2024-07-30T12:50:41.257Z">
+<meta property="article:modified_time" content="2024-08-06T03:22:28.737Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -603,8 +603,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-30 20:50:41</span>
-            <span class="mobile">2024-07-30 20:50:41</span>
+            <span class="desktop">2024-08-06 11:22:28</span>
+            <span class="mobile">2024-08-06 11:22:28</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -665,7 +665,7 @@
 <p><br><br><br></p>
 <h3 id="home-sweet-home"><a href="#home-sweet-home" class="headerlink" title="home sweet home"></a>home sweet home</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">touch</span> a</span><br><span class="line">/challenge/run ~/a</span><br></pre></td></tr></table></figure></div>
 <p>这里题目说了参数要少于3个字符，然后<code>/</code>目录又没有权限创建文件，所以在<code>~</code>目录下创建一个文件，然后作为参数传进去，这里题目要求了是要<code>absolute path</code>，又限制了参数字符数目，所以只能用<code>~</code>来代表<code>/home/hacker</code>。值得注意的点有<code>~</code>代表的是一个<strong>absolute path</strong>。<br><br><br></p>
-<h1 id="Comprehending-Commands"><a href="#Comprehending-Commands" class="headerlink" title="Comprehending Commands"></a>Comprehending Commands</h1><h3 id="cat-not-the-pet-but-the-command"><a href="#cat-not-the-pet-but-the-command" class="headerlink" title="cat: not the pet, but the command!"></a>cat: not the pet, but the command!</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">cat</span> flag</span><br></pre></td></tr></table></figure></div>
+<h1 id="Comprehending-Commands"><a href="#Comprehending-Commands" class="headerlink" title="Comprehending Commands"></a>Comprehending Commands</h1><h3 id="cat-not-the-pet-but-the-command"><a href="#cat-not-the-pet-but-the-command" class="headerlink" title="cat: not the pet, but the command!"></a>cat: not the pet, but the command!</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run	</span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">cat</span> flag</span><br></pre></td></tr></table></figure></div>
 <p>这里比较离谱的点是题目说<code>flag file in your home directory</code>，其实应该在<code>~</code>目录下，但是我是在<code>/</code>目录下找到的。<br><br><br></p>
 <h3 id="catting-absolute-paths"><a href="#catting-absolute-paths" class="headerlink" title="catting absolute paths"></a>catting absolute paths</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">cat</span> flag</span><br></pre></td></tr></table></figure></div>
 <p><br><br><br></p>
@@ -821,7 +821,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-30 20:50:41
+                    :</strong> 2024-08-06 11:22:28
             </li>
         
         <li>
