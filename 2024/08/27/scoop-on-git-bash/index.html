@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/images/PixPin_2024-08-27_21-02-58.png">
 <meta property="og:image" content="http://example.com/images/PixPin_2024-08-27_21-36-55.png">
 <meta property="article:published_time" content="2024-08-27T12:51:29.000Z">
-<meta property="article:modified_time" content="2024-08-27T13:37:55.970Z">
+<meta property="article:modified_time" content="2024-08-29T13:00:04.516Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/PixPin_2024-08-27_21-02-58.png">
@@ -606,8 +606,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-27 21:37:55</span>
-            <span class="mobile">2024-08-27 21:37:55</span>
+            <span class="desktop">2024-08-29 21:04</span>
+            <span class="mobile">2024-08-29 21:04</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -618,7 +618,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>517 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>579 Words</span>
         </span>
     
     
@@ -659,6 +659,12 @@
 <h4 id="Cursor安装"><a href="#Cursor安装" class="headerlink" title="Cursor安装"></a>Cursor安装</h4><p><code>openai</code>推出的一个编辑器，优点在于可以使用AI辅助coding，还可以同步VsCode的所有设置和插件，非常不错，这个的安装要自己去官网下载安装包安装，然后安装的适合可以选择是否安装到命令行，对于<code>git-bash</code>下，直接<code>cursor</code>会出错，需要<code>cd $(dirname $(which cursor))</code>，然后参考<a class="link"   target="_blank" rel="noopener" href="https://github.com/getcursor/cursor/issues/1121" >https://github.com/getcursor/cursor/issues/1121 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>修改<code>cursor</code>这个脚本就可以了。</p>
 <h4 id="zsh-history"><a href="#zsh-history" class="headerlink" title="zsh history"></a>zsh history</h4><p>在Windows下，我的<code>zsh</code>会将<code>history</code>全部存储在<code>/c/Users/$(Username)</code>下，然后它还不会把<code>history</code>全部存储在一个<code>.zsh_history</code>文件中，你可以使用以下命令定期对这些文件进行整理。</p>
 <div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.zsh_history.* &gt;&gt; ~/.zsh_history</span><br><span class="line"><span class="built_in">rm</span> ~/.zsh_history.*</span><br></pre></td></tr></table></figure></div>
+
+
+<h4 id="cargo"><a href="#cargo" class="headerlink" title="cargo"></a>cargo</h4><p>直接<code>scoop install rustup</code>会在使用的时候报一个<code>link.exe</code>什么的错误，你可以这样：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scoop install rustup-gnu</span><br><span class="line">rustup toolchain install stable-x86_64-pc-windows-gnu</span><br><span class="line">rustup default stable-x86_64-pc-windows-gnu</span><br></pre></td></tr></table></figure></div>
+<p>具体可以参考<a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/73421853/how-to-install-rust-via-cli-on-windows" >https://stackoverflow.com/questions/73421853/how-to-install-rust-via-cli-on-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
         </div>
 
         
@@ -672,7 +678,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-08-27 21:37:55
+                    :</strong> 2024-08-29 21:00:04
             </li>
         
         <li>
