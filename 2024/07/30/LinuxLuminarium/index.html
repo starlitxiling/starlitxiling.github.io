@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="starlitxiling">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+        
+        
+        
+            <link rel="preconnect" href="https://evan.beee.top" crossorigin>
+        
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/07/30/linuxluminarium/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="应该是今年为初学者新加的项目，不是很难，但是还是有很多不知道的，浅  浅  写了一遍收获还不错。题目旁边还多了个hacker，我记得以前只有solve来着，不知道什么意思，可能是更hacker的解决办法，心情爆炸来pwn看看还是不错的。 Hello HackersIntro to Commands学会执行命令就行，直接           1.&#x2F;hello  Intro to Arguments在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LinuxLuminarium">
+<meta property="og:url" content="http://example.com/2024/07/30/LinuxLuminarium/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="应该是今年为初学者新加的项目，不是很难，但是还是有很多不知道的，浅  浅  写了一遍收获还不错。题目旁边还多了个hacker，我记得以前只有solve来着，不知道什么意思，可能是更hacker的解决办法，心情爆炸来pwn看看还是不错的。 Hello HackersIntro to Commands学会执行命令就行，直接           1.&#x2F;hello  Intro to Arguments在">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-30T12:41:53.000Z">
+<meta property="article:modified_time" content="2024-11-12T13:07:35.580Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="pwn">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/xiling_favicon.ico" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/xiling_favicon.ico">
+    <meta name="theme-color" content="#FFB6C1">
+    <link rel="shortcut icon" href="/images/xiling_favicon.ico">
+    <!--- Page Info-->
+    
+    <title>
+        
+            LinuxLuminarium | starlitxiling的临渊阁
+        
+    </title>
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Chillax/chillax.css">
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/css/build/tailwind.css">
+    
+
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/GeistMono/geist-mono.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fonts/Geist/geist.css">
+    <!--- Font Part-->
+    
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"5rem","h2":"4rem","h3":"2.8rem","h4":"2.5rem","h5":"2.2rem","h6":"2rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#FFB6C1","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Sans SC","url":"https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap"},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":true,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":false,"open_graph":{"enable":true,"image":null,"description":null},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-m3ld6k_3840x2160.png","dark":"/images/wallhaven-7pqxkv_3840x1600.png"},"title":"starlitxiling's Blog","subtitle":{"text":["仰之弥高，钻之弥坚，瞻之在前，忽焉在后"],"hitokoto":{"enable":true,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"mini","audios":[{"name":"蜀绣","artist":"李宇春","url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.8.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Archives":{"submenus":{"TIME":"/archives","TAGS":"/tags"}},"Links":{"path":"/links/","icon":"fa-regular fa-link"},"About":{"icon":"fa-regular fa-user","submenus":{"Essay":"/essays/","Photo":"/masonry/","Github":"https://github.com/starlitxiling"}}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":{"Friends":{"icon":"fa-solid fa-link","path":"/links/"}}},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":true};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/fontawesome.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/brands.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/solid.min.css">
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/fontawesome/regular.min.css">
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+	<span class="scroll-progress-bar"></span>
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+                <a class="logo-image h-8 w-8 sm:w-10 sm:h-10 mr-3" href="/">
+                    <img src="/images/xiling_favicon.ico" class="w-full h-full rounded-sm">
+                </a>
+            
+            <a class="logo-title" href="/">
+                
+                starlitxiling的临渊阁
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    
+                                    ARCHIVES
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/archives">
+                                                    TIME
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/tags">
+                                                    TAGS
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/links/"
+                                        >
+                                    <i class="fa-regular fa-link fa-fw"></i>
+                                    LINKS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="has-dropdown"
+                                   href="#"
+                                        onClick=&#34;return false;&#34;>
+                                    <i class="fa-regular fa-user fa-fw"></i>
+                                    ABOUT
+                                    <i class="fa-solid fa-chevron-down fa-fw"></i>
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                                    <ul class="sub-menu">
+                                        
+                                            <li>
+                                                <a href="/essays/">
+                                                    ESSAY
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a href="/masonry/">
+                                                    PHOTO
+                                                </a>
+                                            </li>
+                                        
+                                            <li>
+                                                <a target="_blank" rel="noopener" href="https://github.com/starlitxiling">
+                                                    GITHUB
+                                                </a>
+                                            </li>
+                                        
+                                    </ul>
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-Archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-Archives">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/archives">TIME</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/tags">TAGS</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/links/"
+                        >
+                            <span>
+                                LINKS
+                            </span>
+                            
+                                <i class="fa-regular fa-link fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item-sub text-base my-1.5 flex flex-col w-full">
+                        
+                        <div class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary cursor-pointer text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                             navbar-data-toggle="submenu-About"
+                        >
+                            <span>
+                                ABOUT
+                            </span>
+                            
+                                <i class="fa-solid fa-chevron-right fa-sm fa-fw transition-all"></i>
+                            
+                        </div>
+                        
+
+                        
+                            <div class="flex-col items-start px-2 py-2 hidden" data-target="submenu-About">
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/essays/">ESSAY</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           href="/masonry/">PHOTO</a>
+                                    </div>
+                                
+                                    <div class="drawer-navbar-item text-base flex flex-col justify-center items-start hover:underline active:underline hover:underline-offset-1 rounded-3xl">
+                                        <a class=" text-third-text-color text-xl"
+                                           target="_blank" rel="noopener" href="https://github.com/starlitxiling">GITHUB</a>
+                                    </div>
+                                
+                            </div>
+                        
+                    </li>
+            
+
+            
+            
+                
+                    
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/links/"
+                        >
+                            <span>Friends</span>
+                            <i class="fa-solid fa-link fa-sm fa-fw"></i>
+                        </a>
+                    </li>
+                
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">3</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">LinuxLuminarium</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">starlitxiling</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-30 20:41:53</span>
+        <span class="mobile">2024-07-30 20:41:53</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-12 21:07:35</span>
+            <span class="mobile">2024-11-12 21:07:35</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/pwn/">pwn</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>1.6k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>应该是今年为初学者新加的项目，不是很难，但是还是有很多不知道的，浅  浅  写了一遍收获还不错。题目旁边还多了个hacker，我记得以前只有solve来着，不知道什么意思，可能是更hacker的解决办法，心情爆炸来pwn看看还是不错的。</p>
+<h1 id="Hello-Hackers"><a href="#Hello-Hackers" class="headerlink" title="Hello Hackers"></a>Hello Hackers</h1><h3 id="Intro-to-Commands"><a href="#Intro-to-Commands" class="headerlink" title="Intro to Commands"></a>Intro to Commands</h3><p>学会执行命令就行，直接          </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Intro-to-Arguments"><a href="#Intro-to-Arguments" class="headerlink" title="Intro to Arguments"></a>Intro to Arguments</h3><p>在会执行命令的基础上学会给命令传参，这里我们可以看到<code>/challenge/bin</code>下面有两个文件，一个是<code>hello</code>，一个是<code>hacker</code>，题目说的很明白了要把<code>hacker</code>的参数传给<code>hello</code>，照做就行了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello ./hacker</span><br></pre></td></tr></table></figure>
+<p>注意要在<code>/challenge/bin</code>目录下<br><br><br></p>
+<h1 id="Pondering-Paths"><a href="#Pondering-Paths" class="headerlink" title="Pondering Paths"></a>Pondering Paths</h1><h3 id="The-Root"><a href="#The-Root" class="headerlink" title="The Root"></a>The Root</h3><p>一开始以为是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/bin/pwn</span><br></pre></td></tr></table></figure>
+<p>后面发现不对，然后看了一下<code>/</code>目录的，发现这个目录下也有一个<code>pwn</code>，所以直接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pwn</span><br></pre></td></tr></table></figure>
+<p>即可<br><br><br></p>
+<h3 id="Program-and-aboslute-paths"><a href="#Program-and-aboslute-paths" class="headerlink" title="Program and aboslute paths"></a>Program and aboslute paths</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Position-thy-self"><a href="#Position-thy-self" class="headerlink" title="Position thy self"></a>Position thy self</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p>然后进入他提醒你要进入的目录再执行一次就行了。 <br><br><br></p>
+<h3 id="Position-elsewhere"><a href="#Position-elsewhere" class="headerlink" title="Position elsewhere"></a>Position elsewhere</h3><p>和<a href="#Position-thy-self">Position thy self</a><br><br><br></p>
+<h3 id="Position-yet-elsewhere"><a href="#Position-yet-elsewhere" class="headerlink" title="Position yet elsewhere"></a>Position yet elsewhere</h3><p>和<a href="#Position-thy-self">Position thy self</a><br><br><br></p>
+<h3 id="implicit-relative-paths-from"><a href="#implicit-relative-paths-from" class="headerlink" title="implicit relative paths, from &#x2F;"></a>implicit relative paths, from &#x2F;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /</span><br><span class="line">challenge/run</span><br></pre></td></tr></table></figure>
+<p>按照题目提示就行。<br><br><br></p>
+<h3 id="explicit-relative-paths-from"><a href="#explicit-relative-paths-from" class="headerlink" title="explicit relative paths, from &#x2F;"></a>explicit relative paths, from &#x2F;</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /</span><br><span class="line">./challenge/run</span><br></pre></td></tr></table></figure>
+<p>根据题名写题……<br><br><br></p>
+<h3 id="implicit-relative-paths"><a href="#implicit-relative-paths" class="headerlink" title="implicit relative paths"></a>implicit relative paths</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /challenge</span><br><span class="line">./run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="home-sweet-home"><a href="#home-sweet-home" class="headerlink" title="home sweet home"></a>home sweet home</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">touch</span> a</span><br><span class="line">/challenge/run ~/a</span><br></pre></td></tr></table></figure>
+<p>这里题目说了参数要少于3个字符，然后<code>/</code>目录又没有权限创建文件，所以在<code>~</code>目录下创建一个文件，然后作为参数传进去，这里题目要求了是要<code>absolute path</code>，又限制了参数字符数目，所以只能用<code>~</code>来代表<code>/home/hacker</code>。值得注意的点有<code>~</code>代表的是一个<strong>absolute path</strong>。<br><br><br></p>
+<h1 id="Comprehending-Commands"><a href="#Comprehending-Commands" class="headerlink" title="Comprehending Commands"></a>Comprehending Commands</h1><h3 id="cat-not-the-pet-but-the-command"><a href="#cat-not-the-pet-but-the-command" class="headerlink" title="cat: not the pet, but the command!"></a>cat: not the pet, but the command!</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run	</span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">cat</span> flag</span><br></pre></td></tr></table></figure>
+<p>这里比较离谱的点是题目说<code>flag file in your home directory</code>，其实应该在<code>~</code>目录下，但是我是在<code>/</code>目录下找到的。<br><br><br></p>
+<h3 id="catting-absolute-paths"><a href="#catting-absolute-paths" class="headerlink" title="catting absolute paths"></a>catting absolute paths</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line"><span class="built_in">cd</span> /</span><br><span class="line"><span class="built_in">cat</span> flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="more-catting-practice"><a href="#more-catting-practice" class="headerlink" title="more catting practice"></a>more catting practice</h3><p>根据题目给的目录<code>cat</code>就好了，注意这个目录在最开始就给出了，要是<code>clear</code>掉了就重新刷新一下题目吧。<br><br><br></p>
+<h3 id="grepping-for-a-needle-in-a-haystack"><a href="#grepping-for-a-needle-in-a-haystack" class="headerlink" title="grepping for a needle in a haystack"></a>grepping for a needle in a haystack</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep pwn.college /challenge/data.txt</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="listing-files"><a href="#listing-files" class="headerlink" title="listing files"></a>listing files</h3><p><code>ls</code>看一下<code>/challenge</code>下有什么再执行就行。<br><br><br></p>
+<h3 id="touching-files"><a href="#touching-files" class="headerlink" title="touching files"></a>touching files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> /tmp/pwn</span><br><span class="line"><span class="built_in">touch</span> /tmp/college</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="removing-files"><a href="#removing-files" class="headerlink" title="removing files"></a>removing files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> delete_me</span><br><span class="line">/challenge/check</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="hidden-files"><a href="#hidden-files" class="headerlink" title="hidden files"></a>hidden files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> -a /</span><br><span class="line"><span class="built_in">cat</span> /.flag-224672682014244</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="An-Epic-Filesystem-Quest"><a href="#An-Epic-Filesystem-Quest" class="headerlink" title="An Epic Filesystem Quest"></a>An Epic Filesystem Quest</h3><p>照着线索走就行，唯一要注意的就是有的目录会有很多文件，线索的文件名是全部大写的，看文件名全为大写的就行。<br><br><br></p>
+<h3 id="making-directories"><a href="#making-directories" class="headerlink" title="making directories"></a>making directories</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /tmp/pwn</span><br><span class="line"><span class="built_in">touch</span> /tmp/pwn/college</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="finding-files"><a href="#finding-files" class="headerlink" title="finding files"></a>finding files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find / -name flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Digesting-Documentation"><a href="#Digesting-Documentation" class="headerlink" title="Digesting Documentation"></a>Digesting Documentation</h1><h3 id="Learning-From-Documentation"><a href="#Learning-From-Documentation" class="headerlink" title="Learning From Documentation"></a>Learning From Documentation</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/challenge --giveflag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Learning-Complex-Usage"><a href="#Learning-Complex-Usage" class="headerlink" title="Learning Complex Usage"></a>Learning Complex Usage</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/challenge --printfile /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Reading-Manuals"><a href="#Reading-Manuals" class="headerlink" title="Reading Manuals"></a>Reading Manuals</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man challenge</span><br></pre></td></tr></table></figure>
+<p>然后跟着里面做就行，比如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/challenge --soqkid 821</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Searching-Manuals"><a href="#Searching-Manuals" class="headerlink" title="Searching Manuals"></a>Searching Manuals</h3><p>在<code>man page</code>里面搜<code>flag</code>就行，有一个参数是<code>This argument will give you the flag!</code>,用这个参数就可以拿到<code>flag</code>。 <br><br><br></p>
+<h3 id="Searching-For-Manuals"><a href="#Searching-For-Manuals" class="headerlink" title="Searching For Manuals"></a>Searching For Manuals</h3><p>就是用<code>man man</code>去查man命令的查找参数，找到是<code>-K</code>之后就可以<code>man -K /challenge/challlenge</code>查看man page找<code>argument</code>获取<code>flag</code>了。注意这里是大写的K，且<code>man -K</code>会需要一点时间，不要以为是卡死了，是在正常检索。<br><br><br></p>
+<h3 id="Helpful-Programs"><a href="#Helpful-Programs" class="headerlink" title="Helpful Programs"></a>Helpful Programs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/challenge/challenge -h</span><br><span class="line">/challenge/challenge -p</span><br></pre></td></tr></table></figure>
+<p>这里会获得一个数字，然后把这个数字用来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/challenge -g NUMBER</span><br></pre></td></tr></table></figure>
+<p>这样就能获得<code>flag</code>了。<br><br><br></p>
+<h3 id="Help-for-Builtins"><a href="#Help-for-Builtins" class="headerlink" title="Help for Builtins"></a>Help for Builtins</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span> challenge</span><br><span class="line">challenge --secret NUMBER</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="File-Globbing"><a href="#File-Globbing" class="headerlink" title="File Globbing"></a>File Globbing</h1><h3 id="Matching-with"><a href="#Matching-with" class="headerlink" title="Matching with *"></a>Matching with *</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /ch*</span><br><span class="line">./run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Matching-with-1"><a href="#Matching-with-1" class="headerlink" title="Matching with ?"></a>Matching with ?</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /?ha??enge</span><br><span class="line">./run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Matching-with-2"><a href="#Matching-with-2" class="headerlink" title="Matching with []"></a>Matching with []</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /challenge/files</span><br><span class="line">/challenge/run file_[bash]</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Matching-paths-with"><a href="#Matching-paths-with" class="headerlink" title="Matching paths with []"></a>Matching paths with []</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run /challenge/files/file_[bash]</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Mixing-globs"><a href="#Mixing-globs" class="headerlink" title="Mixing globs"></a>Mixing globs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /challenge/files</span><br><span class="line">/challenge/run [cep]*</span><br></pre></td></tr></table></figure>
+<p>这里要求要用括号，还要少于6个字符，感觉只能这样取巧了。<br><br><br></p>
+<h3 id="Exclusionary-globbing"><a href="#Exclusionary-globbing" class="headerlink" title="Exclusionary globbing"></a>Exclusionary globbing</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /challenge/files</span><br><span class="line">/challenge/run [!pwn]*</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Practicing-Piping"><a href="#Practicing-Piping" class="headerlink" title="Practicing Piping"></a>Practicing Piping</h1><h3 id="Redirecting-output"><a href="#Redirecting-output" class="headerlink" title="Redirecting output"></a>Redirecting output</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> PWN &gt; COLLEGE</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Redirecting-more-output"><a href="#Redirecting-more-output" class="headerlink" title="Redirecting more output"></a>Redirecting more output</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run &gt; myflag</span><br><span class="line"><span class="built_in">cat</span> myflag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Appending-output"><a href="#Appending-output" class="headerlink" title="Appending output"></a>Appending output</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run &gt;&gt; /home/hacker/the-flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Redirecting-errors"><a href="#Redirecting-errors" class="headerlink" title="Redirecting errors"></a>Redirecting errors</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run &gt; myflag 2&gt; instructions</span><br><span class="line"><span class="built_in">cat</span> instructions</span><br><span class="line"><span class="built_in">cat</span> myflag</span><br></pre></td></tr></table></figure>
+<p>知道<code>FD 2</code>是<code>standard error</code>就行。<br><br><br></p>
+<h3 id="Redirecting-input"><a href="#Redirecting-input" class="headerlink" title="Redirecting input"></a>Redirecting input</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> COLLEGE &gt; PWN</span><br><span class="line">/challenge/run &lt; PWN</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Grepping-stored-results"><a href="#Grepping-stored-results" class="headerlink" title="Grepping stored results"></a>Grepping stored results</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run &gt; /tmp/data.txt</span><br><span class="line"><span class="built_in">cat</span> /tmp/data.txt | grep pwn</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Grepping-live-output"><a href="#Grepping-live-output" class="headerlink" title="Grepping live output"></a>Grepping live output</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run | grep pwn</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Grepping-errors"><a href="#Grepping-errors" class="headerlink" title="Grepping errors"></a>Grepping errors</h3><p>这里要表达的就是<code>grep</code>命令是捕获<code>standard output</code>而不是<code>standard error</code>，但是你可以将<code>standard error</code>重定向为<code>standard output</code>然后<code>grep</code>，你可以通过<code>&gt;&amp;</code>符号，它可以将一个文件描述符重定向为另一个文件描述符。所以你可以这样<code>2&gt;&amp;1</code>然后在通过<code>|</code>去<code>grep</code>。如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run 2&gt;&amp;1 | grep pwn</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Duplicating-piped-data-with-tee"><a href="#Duplicating-piped-data-with-tee" class="headerlink" title="Duplicating piped data with tee"></a>Duplicating piped data with tee</h3><p>这里从<code>man page</code>中和教程中知道了<code>tee</code>命令是从读一个输入并输出到屏幕、文件和命令中。所以我们要先<code>/challenge/pwn | tee pwn | /challenge/college</code>，然后输出会在屏幕和pwn文件中，从pwn文件中，可以看到<code>/challenge/pwn</code>需要参数，所以加上参数传给<code>/challenge/college</code>就好了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/pwn --secret sGFA5iZl | /challenge/college</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Writing-to-multiple-programs"><a href="#Writing-to-multiple-programs" class="headerlink" title="Writing to multiple programs"></a>Writing to multiple programs</h3><p>使用<code>tee</code>往多个程序里写输入就好了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/hack | <span class="built_in">tee</span> &gt;(/challenge/the) &gt;(/challenge/planet)</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Shell-Variables"><a href="#Shell-Variables" class="headerlink" title="Shell Variables"></a>Shell Variables</h1><h3 id="Printing-Variables"><a href="#Printing-Variables" class="headerlink" title="Printing Variables"></a>Printing Variables</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$FLAG</span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Setting-Variables"><a href="#Setting-Variables" class="headerlink" title="Setting Variables"></a>Setting Variables</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PWN=COLLEGE</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Multi-word-Variables"><a href="#Multi-word-Variables" class="headerlink" title="Multi-word Variables"></a>Multi-word Variables</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PWN=<span class="string">&quot;COLLEGE YEAH&quot;</span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Exporting-Variables"><a href="#Exporting-Variables" class="headerlink" title="Exporting Variables"></a>Exporting Variables</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PWN=COLLEGE</span><br><span class="line">COLLEGE=PWN</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Printing-Exported-Variables"><a href="#Printing-Exported-Variables" class="headerlink" title="Printing Exported Variables"></a>Printing Exported Variables</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span> | grep pwn.college</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Storing-Command-Output"><a href="#Storing-Command-Output" class="headerlink" title="Storing Command Output"></a>Storing Command Output</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PWN=$(/challenge/run)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$PWN</span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Reading-Input"><a href="#Reading-Input" class="headerlink" title="Reading Input"></a>Reading Input</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -p <span class="string">&quot;INPUT: &quot;</span> PWN</span><br><span class="line">COLLEGE</span><br></pre></td></tr></table></figure>
+<p>使用<code>read -p</code>去指定一个环境变量的值，中间的引号内容可以改变，但是不能去掉，即不能直接<code>read -p PWN</code>。<br><br><br></p>
+<h3 id="Reading-Files"><a href="#Reading-Files" class="headerlink" title="Reading Files"></a>Reading Files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> PWN &lt; /challenge/read_me</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Processes-and-Jobs"><a href="#Processes-and-Jobs" class="headerlink" title="Processes and Jobs"></a>Processes and Jobs</h1><h3 id="Listing-Processes"><a href="#Listing-Processes" class="headerlink" title="Listing Processes"></a>Listing Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -aux </span><br><span class="line">/challenge/17200-run-5626</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Killing-Processes"><a href="#Killing-Processes" class="headerlink" title="Killing Processes"></a>Killing Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep challenge</span><br><span class="line"><span class="built_in">kill</span> 44</span><br><span class="line"><span class="built_in">kill</span> 64</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Interrupting-Processes"><a href="#Interrupting-Processes" class="headerlink" title="Interrupting Processes"></a>Interrupting Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line">Ctrl + c(send <span class="string">&quot;interrupt&quot;</span> )</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Suspending-Processes"><a href="#Suspending-Processes" class="headerlink" title="Suspending Processes"></a>Suspending Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line">Ctrl + z (<span class="built_in">suspend</span> processes to the background)</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Resuming-Processes"><a href="#Resuming-Processes" class="headerlink" title="Resuming Processes"></a>Resuming Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line">Ctrl + z</span><br><span class="line"><span class="built_in">fg</span> (将后台命令提到前台)</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Backgrounding-Processes"><a href="#Backgrounding-Processes" class="headerlink" title="Backgrounding Processes"></a>Backgrounding Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line">Ctrl + z</span><br><span class="line"><span class="built_in">bg</span></span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Foregrounding-Processes"><a href="#Foregrounding-Processes" class="headerlink" title="Foregrounding Processes"></a>Foregrounding Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run</span><br><span class="line"><span class="built_in">bg</span></span><br><span class="line"><span class="built_in">fg</span></span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Starting-Backgrounded-Processes"><a href="#Starting-Backgrounded-Processes" class="headerlink" title="Starting Backgrounded Processes"></a>Starting Backgrounded Processes</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/run &amp;</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Perceiving-Permissions"><a href="#Perceiving-Permissions" class="headerlink" title="Perceiving Permissions"></a>Perceiving Permissions</h1><h3 id="Changing-File-Ownership"><a href="#Changing-File-Ownership" class="headerlink" title="Changing File Ownership"></a>Changing File Ownership</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> hacker /flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Groups-and-Files"><a href="#Groups-and-Files" class="headerlink" title="Groups and Files"></a>Groups and Files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chgrp</span> hacker /flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Fun-With-Groups-Names"><a href="#Fun-With-Groups-Names" class="headerlink" title="Fun With Groups Names"></a>Fun With Groups Names</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">id</span></span><br><span class="line"><span class="built_in">chgrp</span> grp26348 /flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Changing-Permissions"><a href="#Changing-Permissions" class="headerlink" title="Changing Permissions"></a>Changing Permissions</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 0666 /flag</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Executable-Files"><a href="#Executable-Files" class="headerlink" title="Executable Files"></a>Executable Files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> 777 /challenge/run</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Permission-Tweaking-Practice"><a href="#Permission-Tweaking-Practice" class="headerlink" title="Permission Tweaking Practice"></a>Permission Tweaking Practice</h3><p>学会用<code>chmod</code>改权限就行，这里我全程用的421，其他的真不会。。。。。。<br><br><br><br></p>
+<h3 id="Permissions-Setting-Practice"><a href="#Permissions-Setting-Practice" class="headerlink" title="Permissions Setting Practice"></a>Permissions Setting Practice</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> u=rx,g=w,o=x /challenge/pwn</span><br></pre></td></tr></table></figure>
+<p>按照这个模板根据要求改权限就好了。<br><br><br></p>
+<h3 id="The-SUID-Bit"><a href="#The-SUID-Bit" class="headerlink" title="The SUID Bit"></a>The SUID Bit</h3><p><code>s</code>指的是被设置了<code>SUID</code>之后可以被执行的程序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> u+s /challenge/getroot</span><br><span class="line">/challenge/getroot</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Suid">SUID</a><br><br><br><br></p>
+<h1 id="Untangling-Users"><a href="#Untangling-Users" class="headerlink" title="Untangling Users"></a>Untangling Users</h1><h3 id="Becoming-root-with-su"><a href="#Becoming-root-with-su" class="headerlink" title="Becoming root with su"></a>Becoming root with su</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">hack-the-planet</span><br><span class="line"><span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Other-users-with-su"><a href="#Other-users-with-su" class="headerlink" title="Other users with su"></a>Other users with su</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su zardus</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Cracking-passwords"><a href="#Cracking-passwords" class="headerlink" title="Cracking passwords"></a>Cracking passwords</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">john /challenge/shadow-leak (<span class="built_in">wait</span> a few minutes)</span><br><span class="line">su zardus</span><br><span class="line">aardvark</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Using-sudo"><a href="#Using-sudo" class="headerlink" title="Using sudo"></a>Using sudo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> /flag</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Chaining-Commands"><a href="#Chaining-Commands" class="headerlink" title="Chaining Commands"></a>Chaining Commands</h1><h3 id="Chaining-with-Semicolons"><a href="#Chaining-with-Semicolons" class="headerlink" title="Chaining with Semicolons"></a>Chaining with Semicolons</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/challenge/pwn; /challenge/college</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Your-First-Shell-Script"><a href="#Your-First-Shell-Script" class="headerlink" title="Your First Shell Script"></a>Your First Shell Script</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim x.sh</span><br><span class="line">	/challenge/pwn; /challenge/college</span><br><span class="line"></span><br><span class="line">bash x.sh</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Redirecting-Script-Output"><a href="#Redirecting-Script-Output" class="headerlink" title="Redirecting Script Output"></a>Redirecting Script Output</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash x.sh | /challenge/solve</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Executable-Shell-Scripts"><a href="#Executable-Shell-Scripts" class="headerlink" title="Executable Shell Scripts"></a>Executable Shell Scripts</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim script.sh</span><br><span class="line">	<span class="comment">#!/bin/bash</span></span><br><span class="line">	/challenge/solve</span><br><span class="line"><span class="built_in">chmod</span> +x script.sh</span><br><span class="line">./script.sh</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h1 id="Pondering-PATH"><a href="#Pondering-PATH" class="headerlink" title="Pondering PATH"></a>Pondering PATH</h1><h3 id="The-PATH-Variable"><a href="#The-PATH-Variable" class="headerlink" title="The PATH Variable"></a>The PATH Variable</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=<span class="string">&quot;&quot;</span></span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p>原来<code>ls</code>命令是从变量里面读取当前路径的。<br><br><br></p>
+<h3 id="Setting-PATH"><a href="#Setting-PATH" class="headerlink" title="Setting PATH"></a>Setting PATH</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=/challenge/more_commands</span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Adding-Commands"><a href="#Adding-Commands" class="headerlink" title="Adding Commands"></a>Adding Commands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> myscript</span><br><span class="line">vim ~/myscript/win</span><br><span class="line">	<span class="comment">#!/bin/bash</span></span><br><span class="line">	/run/current-system/sw/bin/cat /flag</span><br><span class="line"></span><br><span class="line">PATH=<span class="string">&quot;~/myscript&quot;</span></span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<h3 id="Hijacking-Commands"><a href="#Hijacking-Commands" class="headerlink" title="Hijacking Commands"></a>Hijacking Commands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim ~/myscript/rm</span><br><span class="line">	<span class="comment">#!/bin/bash</span></span><br><span class="line">	/run/current-system/sw/bin/cat /flag</span><br><span class="line"></span><br><span class="line">PATH=<span class="string">&quot;~/myscript&quot;</span></span><br><span class="line">/challenge/run</span><br></pre></td></tr></table></figure>
+<p>说的很明显了。<br><br><br></p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> LinuxLuminarium</li>
+        <li><strong>Author:</strong> starlitxiling</li>
+        <li><strong>Created at
+                :</strong> 2024-07-30 20:41:53</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-11-12 21:07:35
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://starlitxiling.github.io/2024/07/30/LinuxLuminarium/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/pwn/">#pwn</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="prev" rel="prev" href="/2024/08/27/scoop-on-git-bash/">
+					<span class="left arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-left"></i>
+					</span>
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">scoop on git bash</span>
+						<span class="post-nav-item">Prev posts</span>
+					</span>
+				</a>
+			</div>
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/07/29/FanControl/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">FanControl</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://waline.chatshare.top',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">LinuxLuminarium</div>
+		<ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-Hackers"><span class="nav-text">Hello Hackers</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro-to-Commands"><span class="nav-text">Intro to Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intro-to-Arguments"><span class="nav-text">Intro to Arguments</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pondering-Paths"><span class="nav-text">Pondering Paths</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Root"><span class="nav-text">The Root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Program-and-aboslute-paths"><span class="nav-text">Program and aboslute paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-thy-self"><span class="nav-text">Position thy self</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-elsewhere"><span class="nav-text">Position elsewhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Position-yet-elsewhere"><span class="nav-text">Position yet elsewhere</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#implicit-relative-paths-from"><span class="nav-text">implicit relative paths, from &#x2F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explicit-relative-paths-from"><span class="nav-text">explicit relative paths, from &#x2F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#implicit-relative-paths"><span class="nav-text">implicit relative paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#home-sweet-home"><span class="nav-text">home sweet home</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comprehending-Commands"><span class="nav-text">Comprehending Commands</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cat-not-the-pet-but-the-command"><span class="nav-text">cat: not the pet, but the command!</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#catting-absolute-paths"><span class="nav-text">catting absolute paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more-catting-practice"><span class="nav-text">more catting practice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grepping-for-a-needle-in-a-haystack"><span class="nav-text">grepping for a needle in a haystack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#listing-files"><span class="nav-text">listing files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#touching-files"><span class="nav-text">touching files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#removing-files"><span class="nav-text">removing files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hidden-files"><span class="nav-text">hidden files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#An-Epic-Filesystem-Quest"><span class="nav-text">An Epic Filesystem Quest</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#making-directories"><span class="nav-text">making directories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finding-files"><span class="nav-text">finding files</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Digesting-Documentation"><span class="nav-text">Digesting Documentation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-From-Documentation"><span class="nav-text">Learning From Documentation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-Complex-Usage"><span class="nav-text">Learning Complex Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-Manuals"><span class="nav-text">Reading Manuals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Searching-Manuals"><span class="nav-text">Searching Manuals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Searching-For-Manuals"><span class="nav-text">Searching For Manuals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Helpful-Programs"><span class="nav-text">Helpful Programs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Help-for-Builtins"><span class="nav-text">Help for Builtins</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#File-Globbing"><span class="nav-text">File Globbing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Matching-with"><span class="nav-text">Matching with *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matching-with-1"><span class="nav-text">Matching with ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matching-with-2"><span class="nav-text">Matching with []</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Matching-paths-with"><span class="nav-text">Matching paths with []</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mixing-globs"><span class="nav-text">Mixing globs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exclusionary-globbing"><span class="nav-text">Exclusionary globbing</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Practicing-Piping"><span class="nav-text">Practicing Piping</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirecting-output"><span class="nav-text">Redirecting output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirecting-more-output"><span class="nav-text">Redirecting more output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Appending-output"><span class="nav-text">Appending output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirecting-errors"><span class="nav-text">Redirecting errors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirecting-input"><span class="nav-text">Redirecting input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grepping-stored-results"><span class="nav-text">Grepping stored results</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grepping-live-output"><span class="nav-text">Grepping live output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Grepping-errors"><span class="nav-text">Grepping errors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Duplicating-piped-data-with-tee"><span class="nav-text">Duplicating piped data with tee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Writing-to-multiple-programs"><span class="nav-text">Writing to multiple programs</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-Variables"><span class="nav-text">Shell Variables</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Printing-Variables"><span class="nav-text">Printing Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-Variables"><span class="nav-text">Setting Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-word-Variables"><span class="nav-text">Multi-word Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exporting-Variables"><span class="nav-text">Exporting Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Printing-Exported-Variables"><span class="nav-text">Printing Exported Variables</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Storing-Command-Output"><span class="nav-text">Storing Command Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-Input"><span class="nav-text">Reading Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reading-Files"><span class="nav-text">Reading Files</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Processes-and-Jobs"><span class="nav-text">Processes and Jobs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Listing-Processes"><span class="nav-text">Listing Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Killing-Processes"><span class="nav-text">Killing Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interrupting-Processes"><span class="nav-text">Interrupting Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Suspending-Processes"><span class="nav-text">Suspending Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resuming-Processes"><span class="nav-text">Resuming Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backgrounding-Processes"><span class="nav-text">Backgrounding Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Foregrounding-Processes"><span class="nav-text">Foregrounding Processes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Starting-Backgrounded-Processes"><span class="nav-text">Starting Backgrounded Processes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Perceiving-Permissions"><span class="nav-text">Perceiving Permissions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-File-Ownership"><span class="nav-text">Changing File Ownership</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Groups-and-Files"><span class="nav-text">Groups and Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fun-With-Groups-Names"><span class="nav-text">Fun With Groups Names</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Changing-Permissions"><span class="nav-text">Changing Permissions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executable-Files"><span class="nav-text">Executable Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Permission-Tweaking-Practice"><span class="nav-text">Permission Tweaking Practice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Permissions-Setting-Practice"><span class="nav-text">Permissions Setting Practice</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-SUID-Bit"><span class="nav-text">The SUID Bit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Untangling-Users"><span class="nav-text">Untangling Users</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Becoming-root-with-su"><span class="nav-text">Becoming root with su</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Other-users-with-su"><span class="nav-text">Other users with su</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cracking-passwords"><span class="nav-text">Cracking passwords</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-sudo"><span class="nav-text">Using sudo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chaining-Commands"><span class="nav-text">Chaining Commands</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Chaining-with-Semicolons"><span class="nav-text">Chaining with Semicolons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Your-First-Shell-Script"><span class="nav-text">Your First Shell Script</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redirecting-Script-Output"><span class="nav-text">Redirecting Script Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executable-Shell-Scripts"><span class="nav-text">Executable Shell Scripts</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pondering-PATH"><span class="nav-text">Pondering PATH</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-PATH-Variable"><span class="nav-text">The PATH Variable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-PATH"><span class="nav-text">Setting PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adding-Commands"><span class="nav-text">Adding Commands</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hijacking-Commands"><span class="nav-text">Hijacking Commands</span></a></li></ol></li></ol></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">starlitxiling</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        20 posts in total
+                    </span>
+                    
+                        <span>
+                            24.7k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+	<div class="search-pop-overlay">
+	<div class="popup search-popup">
+		<div class="search-header">
+			<span class="search-input-field-pre">
+				<i class="fa-solid fa-keyboard"></i>
+			</span>
+			<div class="search-input-container">
+				<input autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="Search..." spellcheck="false" type="search" class="search-input">
+			</div>
+			<span class="popup-btn-close">
+				<i class="fa-solid fa-times"></i>
+			</span>
+		</div>
+		<div id="search-result">
+			<div id="no-result">
+				<i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+			</div>
+		</div>
+	</div>
+</div>
+	
+
+</main>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Swup.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupSlideTheme.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScriptsPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupProgressPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupScrollPlugin.min.js" ></script><script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/SwupPreloadPlugin.min.js" ></script>
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/imageViewer.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/utils.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/main.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/navbarShrink.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/scrollTopBottom.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/lightDarkSwitch.js" ></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/categoryList.js" ></script>
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/localSearch.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/codeBlock.js" ></script>
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/lazyload.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/runtime.js" ></script>
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/odometer.min.js" ></script>
+    <link rel="stylesheet" href="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/assets/odometer-theme-minimal.css">
+
+
+
+  <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/Typed.min.js" ></script>
+  <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/typed.js" ></script>
+
+
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/minimasonry.min.js" ></script>
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/masonry.js" ></script>
+
+
+
+    <script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/anime.min.js" ></script>
+
+
+
+
+    <script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/tools/tocToggle.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/toc.js" data-swup-reload-script></script><script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/plugins/tabs.js" data-swup-reload-script></script>
+
+
+<script  src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/libs/moment-with-locales.min.js" data-swup-reload-script></script>
+<script type="module" src="https://evan.beee.top/projects/hexo-theme-redefine@2.8.2/source/js/build/layouts/essays.js" data-swup-reload-script></script>
+
+
+
+
+	
+</body>
+
+</html>
