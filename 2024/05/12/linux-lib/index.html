@@ -506,19 +506,19 @@
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<h1 id="查找库文件"><a href="#查找库文件" class="headerlink" title="查找库文件"></a>查找库文件</h1><p><strong>locate</strong>：<br>首先要确保<code>locate</code>数据库是最新的：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo updatedb</span><br></pre></td></tr></table></figure>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo updatedb</span><br></pre></td></tr></table></figure></div>
 <p>然后查找库文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate libpthread.so</span><br></pre></td></tr></table></figure>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate libpthread.so</span><br></pre></td></tr></table></figure></div>
 
 <p><br><br></p>
 <h1 id="确认库文件的存在"><a href="#确认库文件的存在" class="headerlink" title="确认库文件的存在"></a>确认库文件的存在</h1><p><strong>ldconfig -p</strong>：这个命令显示链接器的库缓存中所有已知的库，它可以检查特定的库是否已在系统的链接器配置中</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldconfig -p | grep libpthread</span><br></pre></td></tr></table></figure>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ldconfig -p | grep libpthread</span><br></pre></td></tr></table></figure></div>
 
 <p><br><br></p>
 <h1 id="安装库文件"><a href="#安装库文件" class="headerlink" title="安装库文件"></a>安装库文件</h1><p>使用系统对应的包管理器安装</p>
 <p><br><br></p>
 <h1 id="查看库文件的基本信息"><a href="#查看库文件的基本信息" class="headerlink" title="查看库文件的基本信息"></a>查看库文件的基本信息</h1><p><strong>dpkg -L</strong>：用于列出指定软件包中的所有文件，包括库文件。例如：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L libc6-dev</span><br></pre></td></tr></table></figure>
+<div class="code-container" data-rel="Shell"><figure class="iseeu highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L libc6-dev</span><br></pre></td></tr></table></figure></div>
 
 <p><br><br></p>
 <h1 id="确定库文件的链接路径"><a href="#确定库文件的链接路径" class="headerlink" title="确定库文件的链接路径"></a>确定库文件的链接路径</h1><p>**&#x2F;etc&#x2F;ld.so.conf 和 &#x2F;etc&#x2F;ld.so.conf.d&#x2F;**：这些配置文件和目录定义了链接器搜索动态库的路径。可以查看和修改这些文件以包含或确认包含必要的库文件路径。</p>
