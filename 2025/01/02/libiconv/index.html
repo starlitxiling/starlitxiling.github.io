@@ -19,7 +19,7 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/404.html"/>
+    <link rel="canonical" href="http://example.com/2025/01/02/libiconv/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
@@ -27,11 +27,15 @@
     
     
         
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Page Not Found">
-<meta property="og:url" content="http://example.com/404.html">
+        <meta name="description" content="在Macos下使用cargo编译项目时遇到libiconv库出现问题，错误信息如下： 12345ld: warning: object file (&#x2F;Users&#x2F;xiling&#x2F;Work&#x2F;dora&#x2F;target&#x2F;debug&#x2F;libdora_node_api_cxx.a(78d20d63abadd48c-cxx.o)) was built for newer macOS version (15.1)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="libiconv">
+<meta property="og:url" content="http://example.com/2025/01/02/libiconv/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在Macos下使用cargo编译项目时遇到libiconv库出现问题，错误信息如下： 12345ld: warning: object file (&#x2F;Users&#x2F;xiling&#x2F;Work&#x2F;dora&#x2F;target&#x2F;debug&#x2F;libdora_node_api_cxx.a(78d20d63abadd48c-cxx.o)) was built for newer macOS version (15.1)">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-01-02T06:22:48.000Z">
+<meta property="article:modified_time" content="2025-01-02T06:38:29.547Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -45,7 +49,7 @@
     
     <title>
         
-            Page Not Found | starlitxiling的临渊阁
+            libiconv | starlitxiling的临渊阁
         
     </title>
 
@@ -419,28 +423,205 @@
 			
 
 			<div class="main-content">
-				<div class="page-template-container">
-	
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
 
-	
+		<div class="article-title relative w-full">
+			
+			<div class="w-full flex items-center pt-6 justify-start">
+				<h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">libiconv</h1>
+			</div>
+			
+		</div>
 
-	<div class="page-template-content markdown-body">
 		
-		<h1>Page Not Found</h1>
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/avatar.png">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">starlitxiling</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-01-02 14:22:48</span>
+        <span class="mobile">2025-01-02 14:22:48</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-01-02 14:38:29</span>
+            <span class="mobile">2025-01-02 14:38:29</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>332 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>1 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
 		
 
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>在<code>Macos</code>下使用<code>cargo</code>编译项目时遇到<code>libiconv</code>库出现问题，错误信息如下：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ld: warning: object file (/Users/xiling/Work/dora/target/debug/libdora_node_api_cxx.a(78d20d63abadd48c-cxx.o)) was built <span class="keyword">for</span> newer macOS version (15.1) than being linked (15.0)</span><br><span class="line"></span><br><span class="line">dyld[47942]: Symbol not found: _libiconv</span><br><span class="line">  Referenced from: &lt;29AEB045-6BB1-322B-8FB5-689632E9E693&gt; /Users/xiling/Work/dora/target/debug/dora</span><br><span class="line">  Expected <span class="keyword">in</span>:     &lt;510E7C30-C723-33EF-A25D-1760261B21E2&gt; /usr/lib/libiconv.2.dylib</span><br></pre></td></tr></table></figure></div>
+
+<p>这个问题是使用的<code>libiconv</code>库与<code>macos</code>环境中的不匹配，我们需要使用<code>brew</code>安装一个，<code>brew install libiconv</code>。<br>再找项目的根目录下创建<code>.cargo</code>文件夹，在此文件夹下创建<code>config.toml</code>文件，文件中写入:</p>
+<div class="code-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[build]</span></span><br><span class="line"><span class="attr">rustflags</span> = [<span class="string">&quot;-L&quot;</span>, <span class="string">&quot;/opt/homebrew/Cellar/libiconv/1.18/lib&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># rustflags = [&quot;-C&quot;, &quot;link-arg=-mmacosx-version-min=15.0&quot;, &quot;-L&quot;, &quot;/opt/homebrew/Cellar/libiconv/1.18/lib&quot;] # 可能你也需要这个</span></span><br></pre></td></tr></table></figure></div>
+
+<p>然后就可以正常编译了。<br></p>
+<p>你可以使用<code>otool</code>工具检查可执行文件是否正确链接到<code>libiconv</code>,命令是<code>otool -L /Users/xiling/Work/dora/target/debug/dora</code>, 检查输出中是否正确引用<code>/opt/homebrew/Cellar/libiconv/1.18/lib/libiconv.2.dylib</code>。<br></p>
+<p>使用<code>nm</code>确认符号<code>_libiconv</code>存在于<code>libiconv</code>中。<code>nm /opt/homebrew/Cellar/libiconv/1.18/lib/libiconv.2.dylib | grep _libiconv</code>。</p>
+<p>以上只可能存在的解决办法，并不能确保一定能解决类似的问题，如果不能，你可以查看<a class="link"   target="_blank" rel="noopener" href="https://stackoverflow.com/questions/57734434/libiconv-or-iconv-undefined-symbol-on-mac-osx" >_libiconv or _iconv undefined symbol on Mac OSX<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> libiconv</li>
+        <li><strong>Author:</strong> starlitxiling</li>
+        <li><strong>Created at
+                :</strong> 2025-01-02 14:22:48</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-01-02 14:38:29
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://starlitxiling.github.io/2025/01/02/libiconv/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2024/11/04/Flash-phone/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item">Flash_phone</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://waline.chatshare.top',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
 		
 	</div>
 
-	<div class="page-template-comments">
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">libiconv</div>
 		
+
 	</div>
 </div>
-
-<div class="paginator">
+	</div>
 	
 </div>
-  
 			</div>
 
 			
@@ -522,6 +703,26 @@
 		</div>
 	</div>
 
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
 	
 
 	<div class="right-side-tools-container">
@@ -613,6 +814,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 
