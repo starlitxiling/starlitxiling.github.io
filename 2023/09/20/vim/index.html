@@ -27,15 +27,15 @@
     
     
         
-        <meta name="description" content="Vim在命令模式下split和vsplit加文件名可以新开窗口，但是没有补全(应该是要装插件)。 LunarVim命令模式下输入W会显示一下东西，和vim不一样。">
+        <meta name="description" content="Vim在命令模式下split和vsplit加文件名可以新开窗口，但是没有补全(应该是要装插件)。 vimrc配置： 123456789101112131415161718192021222324252627282930syntax onset numberfiletype indent onset shiftwidth&#x3D;4set softtabstop&#x3D;4set ignorecase&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vim">
 <meta property="og:url" content="http://example.com/2023/09/20/vim/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Vim在命令模式下split和vsplit加文件名可以新开窗口，但是没有补全(应该是要装插件)。 LunarVim命令模式下输入W会显示一下东西，和vim不一样。">
+<meta property="og:description" content="Vim在命令模式下split和vsplit加文件名可以新开窗口，但是没有补全(应该是要装插件)。 vimrc配置： 123456789101112131415161718192021222324252627282930syntax onset numberfiletype indent onset shiftwidth&#x3D;4set softtabstop&#x3D;4set ignorecase&quot;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-20T14:54:49.000Z">
-<meta property="article:modified_time" content="2024-11-12T13:07:35.581Z">
+<meta property="article:modified_time" content="2025-01-06T07:15:39.928Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary">
@@ -458,8 +458,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-12 21:07:35</span>
-            <span class="mobile">2024-11-12 21:07:35</span>
+            <span class="desktop">2025-01-06 15:15:39</span>
+            <span class="mobile">2025-01-06 15:15:39</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -481,7 +481,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>51 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>184 Words</span>
         </span>
     
     
@@ -506,6 +506,9 @@
 
 		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
 			<h1 id="Vim"><a href="#Vim" class="headerlink" title="Vim"></a>Vim</h1><p>在命令模式下<code>split</code>和<code>vsplit</code>加文件名可以新开窗口，但是没有补全(应该是要装插件)。</p>
+<p>vimrc配置：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">syntax on</span><br><span class="line"><span class="built_in">set</span> number</span><br><span class="line">filetype indent on</span><br><span class="line"><span class="built_in">set</span> shiftwidth=4</span><br><span class="line"><span class="built_in">set</span> softtabstop=4</span><br><span class="line"><span class="built_in">set</span> ignorecase</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot; 设置 &lt;Space&gt; 键为 leader 键</span></span><br><span class="line"><span class="string">let mapleader = &quot;</span> <span class="string">&quot;</span></span><br><span class="line"><span class="string">filetype plugin indent on</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> 使用 vim-plug 的示例</span><br><span class="line">call plug<span class="comment">#begin(&#x27;~/.vim/plugged&#x27;)</span></span><br><span class="line">Plug <span class="string">&#x27;tpope/vim-commentary&#x27;</span></span><br><span class="line"><span class="string">&quot; 其他插件...</span></span><br><span class="line"><span class="string">call plug#end()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span> Normal 模式下，&lt;leader&gt;/ 注释或取消注释当前行</span><br><span class="line">nnoremap &lt;leader&gt;/ :Commentary&lt;CR&gt;</span><br><span class="line"></span><br><span class="line"><span class="string">&quot; Visual 模式下，&lt;leader&gt;/ 注释或取消注释选中行</span></span><br><span class="line"><span class="string">xnoremap &lt;leader&gt;/ :Commentary&lt;CR&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">inoremap &lt;CapsLock&gt; &lt;Esc&gt;</span></span><br><span class="line"><span class="string">nnoremap &lt;CapsLock&gt; &lt;Esc&gt;</span></span><br><span class="line"><span class="string">cnoremap &lt;CapsLock&gt; &lt;Esc&gt;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure></div>
+
 <h1 id="LunarVim"><a href="#LunarVim" class="headerlink" title="LunarVim"></a>LunarVim</h1><p>命令模式下输入<code>W</code>会显示一下东西，和<code>vim</code>不一样。</p>
 
 		</div>
@@ -521,7 +524,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-12 21:07:35
+                    :</strong> 2025-01-06 15:15:39
             </li>
         
         <li>
@@ -658,7 +661,7 @@
                     </span>
                     
                         <span>
-                            25k words in total
+                            25.1k words in total
                         </span>
                     
                 </p>
