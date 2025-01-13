@@ -1518,4 +1518,51 @@
 <p>以上只可能存在的解决办法，并不能确保一定能解决类似的问题，如果不能，你可以查看<a class="link"   href="https://stackoverflow.com/questions/57734434/libiconv-or-iconv-undefined-symbol-on-mac-osx" >_libiconv or _iconv undefined symbol on Mac OSX<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Dynamic_Library_link_error</title>
+    <url>/2025/01/07/Dynamic-Library-link-error/</url>
+    <content><![CDATA[<h4 id="常见报错信息"><a href="#常见报错信息" class="headerlink" title="常见报错信息"></a>常见报错信息</h4><ul>
+<li><p>macOS:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">dyld: Library not loaded: @rpath/libz.1.dylib</span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>Linux:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">error <span class="keyword">while</span> loading shared libraries: libxxx.so: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h4 id="RPATH-Run-time-Library-Search-Path"><a href="#RPATH-Run-time-Library-Search-Path" class="headerlink" title="RPATH(Run-time Library Search Path)"></a>RPATH(Run-time Library Search Path)</h4><p><code>RPATH</code>是嵌入在可执行文件或动态库中的路径信息，用于告诉运行时链接器在哪些目录查找依赖的共享库。</p>
+<ul>
+<li>嵌入性：在编译链接阶段内嵌入二进制文件中，运行时自动生效。</li>
+<li>永久性：修改后的<code>RPATH</code>信息保存在文件中，除非重新编译或修改，否则永久生效。</li>
+<li>灵活性：可通过工具或者编译选项设置、修改<code>RPATH</code></li>
+</ul>
+<h4 id="常见原因"><a href="#常见原因" class="headerlink" title="常见原因"></a>常见原因</h4><ol>
+<li>缺少依赖库</li>
+<li>错误的<code>RPATH</code>设置</li>
+<li>构建过程的代码中硬编码路径(比如CMake的<code>find_library</code>)</li>
+<li>环境变量<br>比如<code>LD_LIBRARY_PATH</code>(Linux)或<code>DYLD_LIBRARY_PATH</code>(macOS)设置有误,影响了库搜索路径</li>
+<li>依赖的第三方库中内嵌不正确的<code>RPATH</code></li>
+</ol>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>可以通过工具修改<code>RPATH</code>。</p>
+<ul>
+<li><p>macOS:<br>修改<code>Mach-O</code>格式二进制文件中的<code>RPATH</code>。</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">install_name_tool -add_rpath <span class="string">&quot;<span class="variable">$CONDA_PREFIX</span>/lib&quot;</span> <span class="string">&quot;<span class="variable">$HOME</span>/Work/dora/target/release/dora&quot;</span></span><br></pre></td></tr></table></figure></div>
+<p>第二个参数是你要修改的二进制文件，第一个参数是你要让这个二进制文件指向库的路径。</p>
+</li>
+<li><p>Linux：<br>先通过系统自带的包管理器安装<code>patchelf</code>。<br>打印当前<code>RPATH</code>：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">patchelf --print-rpath path/to/your/executable</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<p>设置<code>RPATH</code>:</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">patchelf --set-rpath <span class="string">&quot;/usr/local/lib:/opt/mydeps/lib&quot;</span> path/to/your/executable</span><br></pre></td></tr></table></figure></div>
+
+<p>修改动态链接器路径：</p>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="code"><pre><span class="line">patchelf --set-interpreter /lib64/ld-linux-x86-64.so.2 path/to/your/executable</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h4 id="Rust中cargo-rustc-link-search指令"><a href="#Rust中cargo-rustc-link-search指令" class="headerlink" title="Rust中cargo:rustc-link-search指令"></a>Rust中cargo:rustc-link-search指令</h4><p><code>build.rs</code>是<code>Rust</code>项目的构建脚本，它通常用于编译C&#x2F;C++依赖代码，检测系统环境和依赖，生成<code>Rust</code>代码或配置文件，向<code>Cargo</code>传递额外的编译器或链接器参数。<em>构建脚本通过向<strong>标准输出</strong>打印特殊格式的信息，通知<code>Cargo</code>执行特定行为。</em></p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;cargo:rustc-link-search=/absolute/path/to/dependency&quot;</span>);</span><br></pre></td></tr></table></figure></div>
+<p>这条语句告诉 Cargo，在调用 <code>rustc</code> 进行链接时，需要添加 <code>-L /absolute/path/to/dependency</code> 参数。该参数会告诉<strong>链接器</strong>在这个目录中查找静态库或动态库。<br>如果是系统库的话可以这么写，但是如果是从<code>conda</code>中查找库的话，就不能硬编码路径，可以这样：</p>
+<div class="code-container" data-rel="Rust"><figure class="iseeu highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">conda_lib</span> = std::env::<span class="title function_ invoke__">var</span>(<span class="string">&quot;CONDA_PREFIX&quot;</span>).<span class="title function_ invoke__">unwrap_or_default</span>() + <span class="string">&quot;/lib&quot;</span>;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;cargo:rustc-link-search=&#123;&#125;&quot;</span>, conda_lib);</span><br></pre></td></tr></table></figure></div>
+<p>或者在<code>.cargo</code>文件夹中创建<code>config.toml</code>文件：</p>
+<div class="code-container" data-rel="Toml"><figure class="iseeu highlight toml"><table><tr><td class="code"><pre><span class="line"><span class="section">[target.x86_64-unknown-linux-gnu]</span></span><br><span class="line"><span class="attr">rustflags</span> = [<span class="string">&quot;-C&quot;</span>, <span class="string">&quot;link-args=-Wl,-rpath,$ORIGIN/../lib&quot;</span>]</span><br></pre></td></tr></table></figure></div>]]></content>
+  </entry>
 </search>
