@@ -35,7 +35,7 @@
 <meta property="og:description" content="原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB(可以在Windows下使用diskgenius查看)说在前面的话在安装之前，建先阅读一下archlinux真的适合我吗 安装流程这里参考新手上路和Archlinux wiki 这里要补充一点的是在进入boot之后检查一下自己的SATA Mode，如果是RAID，则会导致你在安装archlinux的过程中">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-07-12T06:32:50.000Z">
-<meta property="article:modified_time" content="2024-11-12T13:07:35.579Z">
+<meta property="article:modified_time" content="2025-05-14T03:47:54.017Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -448,8 +448,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-12 21:07:35</span>
-            <span class="mobile">2024-11-12 21:07:35</span>
+            <span class="desktop">2025-05-14 11:47:54</span>
+            <span class="mobile">2025-05-14 11:47:54</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -460,12 +460,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>752 Words</span>
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>865 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fa-regular fa-clock"></i>&nbsp;<span>2 Mins</span>
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>3 Mins</span>
         </span>
     
     
@@ -487,6 +487,7 @@
 			<h4 id="原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB-可以在Windows下使用diskgenius查看"><a href="#原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB-可以在Windows下使用diskgenius查看" class="headerlink" title="原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB(可以在Windows下使用diskgenius查看)"></a>原电脑为单硬盘Windows，安装Archlinux之后是单硬盘双系统，efi分区为260MB(可以在Windows下使用diskgenius查看)</h4><h1 id="说在前面的话"><a href="#说在前面的话" class="headerlink" title="说在前面的话"></a>说在前面的话</h1><p>在安装之前，建先阅读一下<a class="link"   target="_blank" rel="noopener" href="https://arch.icekylin.online/guide/prepare/head-on-blow" >archlinux真的适合我吗<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <h1 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h1><p>这里参考<a class="link"   target="_blank" rel="noopener" href="https://arch.icekylin.online/guide/rookie/pre-install.html" >新手上路<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>和<a class="link"   target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/Installation_guide" >Archlinux wiki<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a></p>
 <p>这里要补充一点的是在进入boot之后检查一下自己的<code>SATA Mode</code>，如果是<code>RAID</code>，则会导致你在安装archlinux的过程中<code>lsblk</code>和<code>cfdisk</code>看不到自己的硬盘，需要修改成<code>AHCI</code>。相同的，在你安装好之后使用grub引导系统时，你在那之前还要进boot将其改回<code>RAID</code>才能正常启动Windows,如果要进入Archlinux，要改回<code>AHCI</code>。</p>
+<p>20250501 今天给微星电脑装ubuntu2204，也发现不了硬盘，且BIOS无法修改<code>SATA Mode</code>,后发现微星主板有高级BIOS设置，需要在进入BIOS之后按住右ctrl+右shift+左alt，再按F2，这样就可以进入高级BIOS设置，然后在这里找到一个VMD的选项将其关闭，这样就可以在ubuntu中找到硬盘了。如果需要Windows和ubuntu共存，需要把Windows的bitlocker关闭了</p>
 <p>当然，如果你不想这么麻烦且可以接受Windows系统使用<strong>安全模式</strong>，具体区别见<a class="link"   target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/windows/%E9%AB%98%E7%BA%A7%E5%90%AF%E5%8A%A8%E9%80%89%E9%A1%B9-%E5%8C%85%E6%8B%AC%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F-b90e7808-80b5-a291-d4b8-1a1af602b617" >高级启动选项<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，你可以按照以下步骤：</p>
 <ol>
 <li>打开Windows</li>
@@ -520,7 +521,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-12 21:07:35
+                    :</strong> 2025-05-14 11:47:54
             </li>
         
         <li>
@@ -672,7 +673,7 @@
                     </span>
                     
                         <span>
-                            29.9k words in total
+                            30k words in total
                         </span>
                     
                 </p>
