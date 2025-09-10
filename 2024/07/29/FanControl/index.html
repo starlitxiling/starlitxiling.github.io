@@ -147,7 +147,7 @@
 <meta property="og:image" content="http://example.com/images/coolercontrol.png">
 <meta property="og:image" content="http://example.com/images/ec_register.png">
 <meta property="article:published_time" content="2024-07-28T18:19:32.000Z">
-<meta property="article:modified_time" content="2024-11-12T13:07:35.579Z">
+<meta property="article:modified_time" content="2025-09-10T09:09:28.778Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="tools">
 <meta name="twitter:card" content="summary">
@@ -562,8 +562,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-12 21:07:35</span>
-            <span class="mobile">2024-11-12 21:07:35</span>
+            <span class="desktop">2025-09-10 17:09:28</span>
+            <span class="mobile">2025-09-10 17:09:28</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -618,7 +618,7 @@
                      
                 >这里尝试通过命令行去设置风扇的速度，例如<code>sudo coolercontrol --status</code>和<code>sudo coolercontrol --set-fan 1 --speed 2000</code>，会出现<code>Could not determine the accessibility bus address</code>的错误，无法确定可访问总线地址，说明它无法获取风扇有关的值。</p>
 <p>在一名群友的帮助下，我找到了<a class="link"   target="_blank" rel="noopener" href="https://github.com/grizzlei/clevo-indicator" >clevo-indicator<i class="fa-solid fa-arrow-up-right ml-[0.2em] font-light align-text-top text-[0.7em] link-icon"></i></a>，不过它是在<code>Ubuntu</code>下的，本人是Archlinux，所以如果你也想在Archlinux使用这个，你可以进行以下步骤：</p>
-<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -Syu base-devel gtk3 git    </span><br><span class="line">yay -S libayatana-appindicator</span><br><span class="line"><span class="built_in">export</span> PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig</span><br><span class="line">https://github.com/starlitxiling/clevo-indicator(本人仓库已修复了一些api过时的问题，2024.07.29)</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></div>
+<div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo pacman -Syu base-devel gtk3 git    </span><br><span class="line">yay -S libayatana-appindicator</span><br><span class="line"><span class="built_in">export</span> PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/starlitxiling/clevo-indicator(本人仓库已修复了一些api过时的问题，2024.07.29)</span><br><span class="line">make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure></div>
 <p>在安装之后，你可以直接<code>clevo-indicator</code>来运行，这样默认是auto模式，也就是蓝天模具默认的极其激进的风扇策略，你也可以<code>clevo-indicator 40</code>这样指定风扇的转速。在开始使用时，你可能会遇到下面这样的报错:</p>
 <div class="code-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Simple fan control utility <span class="keyword">for</span> Clevo laptops</span><br><span class="line">Indicator...</span><br><span class="line">modprobe: FATAL: Module ec_sys not found <span class="keyword">in</span> directory /lib/modules/6.10.0-arch1-2</span><br><span class="line">unable to <span class="built_in">read</span> EC from sysfs: No such file or directory</span><br><span class="line">main on worker quit signal</span><br><span class="line"></span><br><span class="line">[1]  + 24416 <span class="keyword">done</span>       sudo clevo-indicator</span><br></pre></td></tr></table></figure></div>
 <p>这是因为你的内核缺少<code>ec_sys</code>模块，你可以先<code>ls /lib/modules/$(uname -r)/kernel/drivers/acpi/ec_sys.ko</code>检测是否存在<code>ec_sys</code>模块，如果存在，可以手动加载<code>sudo modprobe ec_sys</code>。如果没有，你需要自行安装，这里从网上下载的都存在一些问题，提供一个最直接的办法就是用linux内核直接编译一个出来，过程如下：</p>
@@ -645,7 +645,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-12 21:07:35
+                    :</strong> 2025-09-10 17:09:28
             </li>
         
         <li>
