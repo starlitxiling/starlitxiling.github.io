@@ -16,8 +16,8 @@
       colors: ['#ffffff', '#e0f7fa', '#b3e5fc', '#e1f5fe'],
       minSize: 10,
       maxSize: 18,
-      minLife: 1000,
-      maxLife: 2000
+      minLife: 10000,
+      maxLife: 20000
     },
 
     // Sakura settings
